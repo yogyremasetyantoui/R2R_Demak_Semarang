@@ -143,6 +143,7 @@
             border-radius: 50%;
             margin: 0 auto;
             transition: transform 0.2s;
+            cursor: pointer;
         }
         
         .circle:hover {
@@ -184,8 +185,150 @@
             height: 28px;
             border-radius: 50%;
         }
-        
-        /* SDG Colors - not needed anymore but kept for compatibility */
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .modal-header .sdg-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .close {
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .close:hover {
+            transform: scale(1.2);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .info-content {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .ridge2reef-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -225,40 +368,36 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1. Cagar Alam & CA Laut</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td>1. Cagar Alam & Cagar Alam Laut</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Cagar Alam & Cagar Alam Laut" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Cagar Alam & Cagar Alam Laut" data-sdg="13"></div></td><td><div class="circle primary" data-kawasan="Cagar Alam & Cagar Alam Laut" data-sdg="14"></div></td><td><div class="circle primary" data-kawasan="Cagar Alam & Cagar Alam Laut" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>2. Bentang Alam Karst</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Bentang Alam Karst" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Bentang Alam Karst" data-sdg="13"></div></td><td></td><td><div class="circle primary" data-kawasan="Bentang Alam Karst" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>3. Hutan Lindung</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Hutan Lindung" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Hutan Lindung" data-sdg="11"></div></td><td></td><td><div class="circle primary" data-kawasan="Hutan Lindung" data-sdg="13"></div></td><td></td><td><div class="circle primary" data-kawasan="Hutan Lindung" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>4. Kawasan Lindung Geologi</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>4. Kawasan Resapan Air</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Resapan Air" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Resapan Air" data-sdg="11"></div></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Resapan Air" data-sdg="13"></div></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>5. Kawasan Resapan Air</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td>
+                            <td>5. Sempadan Pantai</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Pantai" data-sdg="11"></div></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Pantai" data-sdg="13"></div></td><td><div class="circle primary" data-kawasan="Sempadan Pantai" data-sdg="14"></div></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>6. Sempadan Pantai</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td>
+                            <td>6. Sempadan Sungai</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Sungai" data-sdg="11"></div></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Sungai" data-sdg="13"></div></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Sungai" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>7. Sempadan Sungai</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td>7. Sungai</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Sungai" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Sungai" data-sdg="11"></div></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Sungai" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>8. Sungai</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>9. TN & TN Laut</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td>8. Taman Nasional & Taman Nasional Laut</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="6"></div></td><td></td><td><div class="circle secondary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="8"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="13"></div></td><td><div class="circle primary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="14"></div></td><td><div class="circle primary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -274,43 +413,39 @@
                     <tbody>
                         <tr>
                             <td>10. Kawasan Hutan Produksi</td>
-                            <td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle primary"></div></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Hutan Produksi" data-sdg="8"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Hutan Produksi" data-sdg="14"></div></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>11. Kawasan Budidaya (Umum)</td>
-                            <td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>11. Kawasan Perikanan</td>
+                            <td><div class="circle primary" data-kawasan="Kawasan Perikanan" data-sdg="1"></div></td><td><div class="circle primary" data-kawasan="Kawasan Perikanan" data-sdg="2"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Perikanan" data-sdg="9"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Perikanan" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>12. Pertanian Lahan Basah (Sawah)</td>
-                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>12. Pertanian Lahan Basah</td>
+                            <td><div class="circle primary" data-kawasan="Pertanian Lahan Basah" data-sdg="1"></div></td><td><div class="circle primary" data-kawasan="Pertanian Lahan Basah" data-sdg="2"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Pertanian Lahan Basah" data-sdg="9"></div></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Pertanian Lahan Basah" data-sdg="12"></div></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>13. Pertanian Lahan Kering</td>
-                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td><div class="circle primary" data-kawasan="Pertanian Lahan Kering" data-sdg="2"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Pertanian Lahan Kering" data-sdg="8"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>14. Pertanian Hortikultura</td>
-                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><div class="circle primary" data-kawasan="Pertanian Hortikultura" data-sdg="1"></div></td><td><div class="circle primary" data-kawasan="Pertanian Hortikultura" data-sdg="2"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Pertanian Hortikultura" data-sdg="9"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>15. Kawasan Perikanan</td>
-                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td>15. Kawasan Peruntukan Industri</td>
+                            <td><div class="circle secondary" data-kawasan="Kawasan Peruntukan Industri" data-sdg="1"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Peruntukan Industri" data-sdg="9"></div></td><td><div class="circle primary" data-kawasan="Kawasan Peruntukan Industri" data-sdg="10"></div></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Peruntukan Industri" data-sdg="12"></div></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>16. Kawasan Peruntukan Industri</td>
-                            <td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>16. Kawasan Berikat</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Berikat" data-sdg="9"></div></td><td><div class="circle primary" data-kawasan="Kawasan Berikat" data-sdg="10"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Berikat" data-sdg="17"></div></td>
                         </tr>
                         <tr>
-                            <td>17. Kawasan Berikat</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td>
+                            <td>17. Kawasan Permukiman (Perkotaan)</td>
+                            <td><div class="circle secondary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="1"></div></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="3"></div></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="11"></div></td><td><div class="circle secondary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="12"></div></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
-                            <td>18. Kawasan Permukiman (Perkotaan)</td>
-                            <td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td>19. Permukiman Perdesaan</td>
-                            <td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td>18. Permukiman Perdesaan</td>
+                            <td><div class="circle primary" data-kawasan="Permukiman Perdesaan" data-sdg="1"></div></td><td></td><td><div class="circle primary" data-kawasan="Permukiman Perdesaan" data-sdg="3"></div></td><td></td><td></td><td><div class="circle primary" data-kawasan="Permukiman Perdesaan" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Permukiman Perdesaan" data-sdg="11"></div></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -328,5 +463,148 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Popup -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalKawasan"></h2>
+                    <span class="sdg-badge" id="modalSDG"></span>
+                </div>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="loading">Memuat data</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // URL Google Spreadsheet (format CSV)
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?output=csv';
+        
+        let spreadsheetData = [];
+
+        // Parse CSV to JSON
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const result = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].trim() === '') continue;
+                
+                const obj = {};
+                const currentLine = lines[i].split(',');
+                
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentLine[j] ? currentLine[j].trim() : '';
+                }
+                result.push(obj);
+            }
+            return result;
+        }
+
+        // Load data from Google Sheets
+        async function loadSpreadsheetData() {
+            try {
+                const response = await fetch(SHEET_URL);
+                const csvText = await response.text();
+                spreadsheetData = parseCSV(csvText);
+                console.log('Data loaded:', spreadsheetData.length, 'rows');
+            } catch (error) {
+                console.error('Error loading spreadsheet:', error);
+            }
+        }
+
+        // Get modal elements
+        const modal = document.getElementById('infoModal');
+        const modalBody = document.getElementById('modalBody');
+        const modalKawasan = document.getElementById('modalKawasan');
+        const modalSDG = document.getElementById('modalSDG');
+        const closeBtn = document.getElementsByClassName('close')[0];
+
+        // Close modal when clicking X
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Show modal with data
+        function showModal(kawasan, sdg) {
+            modal.style.display = 'block';
+            modalKawasan.textContent = kawasan;
+            modalSDG.textContent = `SDG ${sdg}`;
+            modalBody.innerHTML = '<div class="loading">Memuat data</div>';
+
+            // Filter data based on Kawasan and SDG
+            const filteredData = spreadsheetData.filter(row => {
+                const rowKawasan = row.Kawasan || '';
+                const rowSDG = row.SDG || '';
+                return rowKawasan.includes(kawasan) && rowSDG == sdg;
+            });
+
+            // Display data
+            if (filteredData.length > 0) {
+                let html = '';
+                filteredData.forEach((data, index) => {
+                    html += `
+                        ${data.ImageURL && data.ImageURL !== '' ? `<img src="${data.ImageURL}" alt="${data.Kegiatan_Objek}" class="modal-image" onerror="this.style.display='none'">` : ''}
+                        
+                        ${data.Kegiatan_Objek && data.Kegiatan_Objek !== '' ? `
+                        <div class="info-section">
+                            <div class="info-label">Kegiatan / Objek</div>
+                            <div class="info-content">${data.Kegiatan_Objek}</div>
+                        </div>
+                        ` : ''}
+                        
+                        ${data.Posisi_Ridge2Reef && data.Posisi_Ridge2Reef !== '' ? `
+                        <div class="info-section">
+                            <div class="info-label">Posisi Ridge to Reef</div>
+                            <div class="ridge2reef-badge">${data.Posisi_Ridge2Reef}</div>
+                        </div>
+                        ` : ''}
+                        
+                        ${data.Narasi && data.Narasi !== '' ? `
+                        <div class="info-section">
+                            <div class="info-label">Narasi</div>
+                            <div class="info-content">${data.Narasi}</div>
+                        </div>
+                        ` : ''}
+                        
+                        ${index < filteredData.length - 1 ? '<hr style="margin: 25px 0; border: none; border-top: 2px solid #e5e7eb;">' : ''}
+                    `;
+                });
+                modalBody.innerHTML = html;
+            } else {
+                modalBody.innerHTML = '<div class="no-data">Tidak ada data untuk kombinasi kawasan dan SDG ini.</div>';
+            }
+        }
+
+        // Add click event to all circles
+        function initializeCircleListeners() {
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach(circle => {
+                circle.addEventListener('click', function() {
+                    const kawasan = this.getAttribute('data-kawasan');
+                    const sdg = this.getAttribute('data-sdg');
+                    showModal(kawasan, sdg);
+                });
+            });
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', async function() {
+            await loadSpreadsheetData();
+            initializeCircleListeners();
+        });
+    </script>
 </body>
 </html>
