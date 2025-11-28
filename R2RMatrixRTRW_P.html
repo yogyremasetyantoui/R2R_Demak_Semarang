@@ -52,16 +52,36 @@
             width: 60px;
             height: 60px;
             transition: transform 0.2s;
+            cursor: pointer;
+            position: relative;
         }
         
         .sdg-icon img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            border-radius: 4px;
         }
         
         .sdg-icon:hover {
             transform: scale(1.1);
+        }
+
+        .sdg-icon.has-data::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background: #10b981;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .sdg-icon.no-data {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         
         .content {
@@ -143,6 +163,7 @@
             border-radius: 50%;
             margin: 0 auto;
             transition: transform 0.2s;
+            cursor: pointer;
         }
         
         .circle:hover {
@@ -184,6 +205,238 @@
             height: 28px;
             border-radius: 50%;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-header h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .modal-header .sdg-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .close {
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .close:hover {
+            transform: scale(1.2);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-image {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-label::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+            border-radius: 2px;
+        }
+
+        .info-content {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        /* Card Styles for Multiple Rows */
+        .pointer-card {
+            background: #f9fafb;
+            border-left: 4px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pointer-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .pointer-card.secondary-card {
+            background: #fef3c7;
+            border-left-color: #f59e0b;
+        }
+
+        .pointer-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .pointer-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .pointer-card.secondary-card .pointer-number {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .ridge2reef-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* SDG Modal Specific Styles */
+        .sdg-modal-header {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        }
+
+        .sdg-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .sdg-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 2px solid #e5e7eb;
+            margin: 30px 0;
+        }
+
+        .pointer-count-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.3);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -191,23 +444,23 @@
         <div class="header">
             <h1>Matriks Integrasi Pola Ruang RTRW & 17 SDGs</h1>
             <div class="sdg-icons">
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sustainable_Development_Goal_01NoPoverty.svg/500px-Sustainable_Development_Goal_01NoPoverty.svg.png" alt="SDG 1"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Sustainable_Development_Goal_02ZeroHunger.svg/500px-Sustainable_Development_Goal_02ZeroHunger.svg.png" alt="SDG 2"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Sustainable_Development_Goal_03GoodHealth.svg/500px-Sustainable_Development_Goal_03GoodHealth.svg.png" alt="SDG 3"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sustainable_Development_Goal_04QualityEducation.svg/500px-Sustainable_Development_Goal_04QualityEducation.svg.png" alt="SDG 4"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sustainable_Development_Goal_05GenderEquality.svg/500px-Sustainable_Development_Goal_05GenderEquality.svg.png" alt="SDG 5"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Sustainable_Development_Goal_06CleanWaterSanitation.svg/500px-Sustainable_Development_Goal_06CleanWaterSanitation.svg.png" alt="SDG 6"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_07CleanEnergy.svg/500px-Sustainable_Development_Goal_07CleanEnergy.svg.png" alt="SDG 7"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sustainable_Development_Goal_08DecentWork.svg/500px-Sustainable_Development_Goal_08DecentWork.svg.png" alt="SDG 8"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sustainable_Development_Goal_09Industry.svg/500px-Sustainable_Development_Goal_09Industry.svg.png" alt="SDG 9"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_10ReducedInequalities.svg/500px-Sustainable_Development_Goal_10ReducedInequalities.svg.png" alt="SDG 10"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Sustainable_Development_Goal_11SustainableCities.svg/500px-Sustainable_Development_Goal_11SustainableCities.svg.png" alt="SDG 11"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Sustainable_Development_Goal_12ResponsibleConsumption.svg/500px-Sustainable_Development_Goal_12ResponsibleConsumption.svg.png" alt="SDG 12"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Sustainable_Development_Goal_13Climate.svg/500px-Sustainable_Development_Goal_13Climate.svg.png" alt="SDG 13"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Sustainable_Development_Goal_14LifeBelowWater.svg/500px-Sustainable_Development_Goal_14LifeBelowWater.svg.png" alt="SDG 14"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sustainable_Development_Goal_15LifeOnLand.svg/500px-Sustainable_Development_Goal_15LifeOnLand.svg.png" alt="SDG 15"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg/500px-Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg.png" alt="SDG 16"></div>
-                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sustainable_Development_Goal_17Partnerships.svg/500px-Sustainable_Development_Goal_17Partnerships.svg.png" alt="SDG 17"></div>
+                <div class="sdg-icon" data-sdg="1"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sustainable_Development_Goal_01NoPoverty.svg/500px-Sustainable_Development_Goal_01NoPoverty.svg.png" alt="SDG 1"></div>
+                <div class="sdg-icon" data-sdg="2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Sustainable_Development_Goal_02ZeroHunger.svg/500px-Sustainable_Development_Goal_02ZeroHunger.svg.png" alt="SDG 2"></div>
+                <div class="sdg-icon" data-sdg="3"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Sustainable_Development_Goal_03GoodHealth.svg/500px-Sustainable_Development_Goal_03GoodHealth.svg.png" alt="SDG 3"></div>
+                <div class="sdg-icon" data-sdg="4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sustainable_Development_Goal_04QualityEducation.svg/500px-Sustainable_Development_Goal_04QualityEducation.svg.png" alt="SDG 4"></div>
+                <div class="sdg-icon" data-sdg="5"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sustainable_Development_Goal_05GenderEquality.svg/500px-Sustainable_Development_Goal_05GenderEquality.svg.png" alt="SDG 5"></div>
+                <div class="sdg-icon" data-sdg="6"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Sustainable_Development_Goal_06CleanWaterSanitation.svg/500px-Sustainable_Development_Goal_06CleanWaterSanitation.svg.png" alt="SDG 6"></div>
+                <div class="sdg-icon" data-sdg="7"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_07CleanEnergy.svg/500px-Sustainable_Development_Goal_07CleanEnergy.svg.png" alt="SDG 7"></div>
+                <div class="sdg-icon" data-sdg="8"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sustainable_Development_Goal_08DecentWork.svg/500px-Sustainable_Development_Goal_08DecentWork.svg.png" alt="SDG 8"></div>
+                <div class="sdg-icon" data-sdg="9"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sustainable_Development_Goal_09Industry.svg/500px-Sustainable_Development_Goal_09Industry.svg.png" alt="SDG 9"></div>
+                <div class="sdg-icon" data-sdg="10"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_10ReducedInequalities.svg/500px-Sustainable_Development_Goal_10ReducedInequalities.svg.png" alt="SDG 10"></div>
+                <div class="sdg-icon" data-sdg="11"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Sustainable_Development_Goal_11SustainableCities.svg/500px-Sustainable_Development_Goal_11SustainableCities.svg.png" alt="SDG 11"></div>
+                <div class="sdg-icon" data-sdg="12"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Sustainable_Development_Goal_12ResponsibleConsumption.svg/500px-Sustainable_Development_Goal_12ResponsibleConsumption.svg.png" alt="SDG 12"></div>
+                <div class="sdg-icon" data-sdg="13"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Sustainable_Development_Goal_13Climate.svg/500px-Sustainable_Development_Goal_13Climate.svg.png" alt="SDG 13"></div>
+                <div class="sdg-icon" data-sdg="14"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Sustainable_Development_Goal_14LifeBelowWater.svg/500px-Sustainable_Development_Goal_14LifeBelowWater.svg.png" alt="SDG 14"></div>
+                <div class="sdg-icon" data-sdg="15"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sustainable_Development_Goal_15LifeOnLand.svg/500px-Sustainable_Development_Goal_15LifeOnLand.svg.png" alt="SDG 15"></div>
+                <div class="sdg-icon" data-sdg="16"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg/500px-Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg.png" alt="SDG 16"></div>
+                <div class="sdg-icon" data-sdg="17"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sustainable_Development_Goal_17Partnerships.svg/500px-Sustainable_Development_Goal_17Partnerships.svg.png" alt="SDG 17"></div>
             </div>
         </div>
         
@@ -224,35 +477,35 @@
                     <tbody>
                         <tr>
                             <td>1. Cagar Alam & Cagar Alam Laut</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Cagar Alam & Cagar Alam Laut" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Cagar Alam & Cagar Alam Laut" data-sdg="13"></div></td><td><div class="circle primary" data-kawasan="Cagar Alam & Cagar Alam Laut" data-sdg="14"></div></td><td><div class="circle primary" data-kawasan="Cagar Alam & Cagar Alam Laut" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>2. Bentang Alam Karst</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Bentang Alam Karst" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Bentang Alam Karst" data-sdg="13"></div></td><td></td><td><div class="circle primary" data-kawasan="Bentang Alam Karst" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>3. Hutan Lindung</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Hutan Lindung" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Hutan Lindung" data-sdg="11"></div></td><td></td><td><div class="circle primary" data-kawasan="Hutan Lindung" data-sdg="13"></div></td><td></td><td><div class="circle primary" data-kawasan="Hutan Lindung" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>4. Kawasan Resapan Air</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Resapan Air" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Kawasan Resapan Air" data-sdg="11"></div></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Resapan Air" data-sdg="13"></div></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>5. Sempadan Pantai</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Pantai" data-sdg="11"></div></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Pantai" data-sdg="13"></div></td><td><div class="circle primary" data-kawasan="Sempadan Pantai" data-sdg="14"></div></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>6. Sempadan Sungai</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Sungai" data-sdg="11"></div></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Sungai" data-sdg="13"></div></td><td></td><td><div class="circle primary" data-kawasan="Sempadan Sungai" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>7. Sungai</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Sungai" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Sungai" data-sdg="11"></div></td><td></td><td></td><td><div class="circle primary" data-kawasan="Sungai" data-sdg="14"></div></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>8. Taman Nasional & Taman Nasional Laut</td>
-                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="6"></div></td><td></td><td><div class="circle primary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="8"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="13"></div></td><td><div class="circle primary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="14"></div></td><td><div class="circle primary" data-kawasan="Taman Nasional & Taman Nasional Laut" data-sdg="15"></div></td><td></td><td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -268,39 +521,39 @@
                     <tbody>
                         <tr>
                             <td>10. Kawasan Hutan Produksi</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Hutan Produksi" data-sdg="8"></div></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Kawasan Hutan Produksi" data-sdg="12"></div></td><td><div class="circle primary" data-kawasan="Kawasan Hutan Produksi" data-sdg="13"></div></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>11. Kawasan Perikanan</td>
-                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                            <td><div class="circle primary" data-kawasan="Kawasan Perikanan" data-sdg="1"></div></td><td><div class="circle primary" data-kawasan="Kawasan Perikanan" data-sdg="2"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Perikanan" data-sdg="8"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Perikanan" data-sdg="14"></div></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>12. Pertanian Lahan Basah</td>
-                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><div class="circle primary" data-kawasan="Pertanian Lahan Basah" data-sdg="1"></div></td><td><div class="circle primary" data-kawasan="Pertanian Lahan Basah" data-sdg="2"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Pertanian Lahan Basah" data-sdg="8"></div></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Pertanian Lahan Basah" data-sdg="12"></div></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>13. Pertanian Lahan Kering</td>
-                            <td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td></td><td><div class="circle primary" data-kawasan="Pertanian Lahan Kering" data-sdg="2"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Pertanian Lahan Kering" data-sdg="8"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>14. Pertanian Hortikultura</td>
-                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><div class="circle primary" data-kawasan="Pertanian Hortikultura" data-sdg="1"></div></td><td><div class="circle primary" data-kawasan="Pertanian Hortikultura" data-sdg="2"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary" data-kawasan="Pertanian Hortikultura" data-sdg="8"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>15. Kawasan Peruntukan Industri</td>
-                            <td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><div class="circle secondary" data-kawasan="Kawasan Peruntukan Industri" data-sdg="1"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Peruntukan Industri" data-sdg="8"></div></td><td><div class="circle primary" data-kawasan="Kawasan Peruntukan Industri" data-sdg="9"></div></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Peruntukan Industri" data-sdg="12"></div></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>16. Kawasan Berikat</td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Berikat" data-sdg="8"></div></td><td><div class="circle primary" data-kawasan="Kawasan Berikat" data-sdg="9"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Berikat" data-sdg="17"></div></td>
                         </tr>
                         <tr>
                             <td>17. Kawasan Permukiman (Perkotaan)</td>
-                            <td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><div class="circle primary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="1"></div></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="3"></div></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="11"></div></td><td><div class="circle primary" data-kawasan="Kawasan Permukiman (Perkotaan)" data-sdg="12"></div></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                         <tr>
                             <td>18. Permukiman Perdesaan</td>
-                            <td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                            <td><div class="circle primary" data-kawasan="Permukiman Perdesaan" data-sdg="1"></div></td><td></td><td><div class="circle primary" data-kawasan="Permukiman Perdesaan" data-sdg="3"></div></td><td></td><td></td><td><div class="circle primary" data-kawasan="Permukiman Perdesaan" data-sdg="6"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary" data-kawasan="Permukiman Perdesaan" data-sdg="11"></div></td><td></td><td></td><td></td><td></td><td></td><td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -318,5 +571,315 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Popup untuk Kawasan -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalKawasan"></h2>
+                    <span class="sdg-badge" id="modalSDG"></span>
+                </div>
+                <span class="close" onclick="closeKawasanModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="loading">Memuat data</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Popup untuk SDG -->
+    <div id="sdgModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header sdg-modal-header">
+                <div>
+                    <div class="sdg-title" id="sdgModalTitle"></div>
+                    <div class="sdg-subtitle" id="sdgModalSubtitle"></div>
+                </div>
+                <span class="close" onclick="closeSDGModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="sdgModalBody">
+                <div class="loading">Memuat data</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load PapaParse Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
+    <script>
+        // Published CSV URLs
+        const KAWASAN_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?gid=230507739&single=true&output=csv';
+        const SDG_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?gid=172114157&single=true&output=csv';
+        
+        let kawasanData = [];
+        let sdgData = [];
+
+        // Load data from Kawasan Google Sheets
+        function loadKawasanData() {
+            Papa.parse(KAWASAN_SHEET_URL, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    kawasanData = results.data;
+                    console.log('Kawasan data loaded:', kawasanData.length, 'rows');
+                },
+                error: function(error) {
+                    console.error('Error loading kawasan data:', error);
+                }
+            });
+        }
+
+        // Load data from SDG Google Sheets
+        function loadSDGData() {
+            Papa.parse(SDG_SHEET_URL, {
+                download: true,
+                header: true,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    sdgData = results.data;
+                    console.log('SDG data loaded:', sdgData.length, 'rows');
+                    updateSDGIcons();
+                },
+                error: function(error) {
+                    console.error('Error loading SDG data:', error);
+                }
+            });
+        }
+
+        // Update SDG icons based on data availability
+        function updateSDGIcons() {
+            const sdgIcons = document.querySelectorAll('.sdg-icon');
+            sdgIcons.forEach(icon => {
+                const sdgNumber = icon.getAttribute('data-sdg');
+                const hasData = sdgData.some(row => {
+                    const rowSDG = (row.SDG || '').toString().trim();
+                    return rowSDG === sdgNumber;
+                });
+                
+                if (hasData) {
+                    icon.classList.add('has-data');
+                    icon.style.cursor = 'pointer';
+                } else {
+                    icon.classList.add('no-data');
+                    icon.style.cursor = 'not-allowed';
+                }
+            });
+        }
+
+        // Get modal elements
+        const kawasanModal = document.getElementById('infoModal');
+        const kawasanModalBody = document.getElementById('modalBody');
+        const modalKawasan = document.getElementById('modalKawasan');
+        const modalSDG = document.getElementById('modalSDG');
+
+        const sdgModal = document.getElementById('sdgModal');
+        const sdgModalBody = document.getElementById('sdgModalBody');
+        const sdgModalTitle = document.getElementById('sdgModalTitle');
+        const sdgModalSubtitle = document.getElementById('sdgModalSubtitle');
+
+        // Close modals
+        function closeKawasanModal() {
+            kawasanModal.style.display = 'none';
+        }
+
+        function closeSDGModal() {
+            sdgModal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == kawasanModal) {
+                closeKawasanModal();
+            }
+            if (event.target == sdgModal) {
+                closeSDGModal();
+            }
+        }
+
+        // Show Kawasan modal with data
+        function showKawasanModal(kawasan, sdg) {
+            kawasanModal.style.display = 'block';
+            modalKawasan.textContent = kawasan;
+            modalSDG.textContent = `SDG ${sdg}`;
+            kawasanModalBody.innerHTML = '<div class="loading">Memuat data</div>';
+
+            const filteredData = kawasanData.filter(row => {
+                const rowKawasan = (row.Kawasan || '').trim();
+                const rowSDG = (row.SDG || '').toString().trim();
+                const sdgStr = sdg.toString().trim();
+                
+                const kawasanMatch = rowKawasan.toLowerCase().includes(kawasan.toLowerCase()) || 
+                                    kawasan.toLowerCase().includes(rowKawasan.toLowerCase());
+                const sdgMatch = rowSDG === sdgStr || rowSDG === `SDG ${sdgStr}` || rowSDG === `SDG${sdgStr}` || rowSDG === `${sdgStr}`;
+                
+                return kawasanMatch && sdgMatch;
+            });
+
+            if (filteredData.length > 0) {
+                let html = '';
+                filteredData.forEach((data, index) => {
+                    html += `
+                        ${data.ImageURL && data.ImageURL.trim() !== '' ? `<img src="${data.ImageURL.trim()}" alt="${data.Kegiatan_Objek || ''}" class="modal-image" onerror="this.style.display='none'">` : ''}
+                        
+                        ${data.Kegiatan_Objek && data.Kegiatan_Objek.trim() !== '' ? `
+                        <div class="info-section">
+                            <div class="info-label">Kegiatan / Objek</div>
+                            <div class="info-content">${data.Kegiatan_Objek}</div>
+                        </div>
+                        ` : ''}
+                        
+                        ${data.Posisi_Ridge2Reef && data.Posisi_Ridge2Reef.trim() !== '' ? `
+                        <div class="info-section">
+                            <div class="info-label">Posisi Ridge to Reef</div>
+                            <div class="ridge2reef-badge">${data.Posisi_Ridge2Reef}</div>
+                        </div>
+                        ` : ''}
+                        
+                        ${data.Narasi && data.Narasi.trim() !== '' ? `
+                        <div class="info-section">
+                            <div class="info-label">Narasi</div>
+                            <div class="info-content">${data.Narasi}</div>
+                        </div>
+                        ` : ''}
+                        
+                        ${index < filteredData.length - 1 ? '<hr class="section-divider">' : ''}
+                    `;
+                });
+                kawasanModalBody.innerHTML = html;
+            } else {
+                kawasanModalBody.innerHTML = '<div class="no-data">Tidak ada data untuk kombinasi kawasan dan SDG ini.</div>';
+            }
+        }
+
+        // Show SDG modal with MULTIPLE ROWS support
+        function showSDGModal(sdgNumber) {
+            const filteredData = sdgData.filter(row => {
+                const rowSDG = (row.SDG || '').toString().trim();
+                return rowSDG === sdgNumber.toString();
+            });
+
+            if (filteredData.length === 0) {
+                return; // Don't show modal if no data
+            }
+
+            sdgModal.style.display = 'block';
+            sdgModalBody.innerHTML = '<div class="loading">Memuat data</div>';
+
+            const firstRow = filteredData[0];
+            
+            sdgModalTitle.textContent = `SDG ${firstRow.SDG}`;
+            sdgModalSubtitle.textContent = `${firstRow['Nama SDG'] || ''} `;
+            
+            // Add pointer count badge
+            if (filteredData.length > 1) {
+                sdgModalSubtitle.innerHTML += `<span class="pointer-count-badge">${filteredData.length} Pointer</span>`;
+            }
+
+            let html = '';
+            
+            // Penjelasan Umum (dari baris pertama yang memiliki data)
+            const penjelasanRow = filteredData.find(row => row['Penjelasan Umum'] && row['Penjelasan Umum'].trim() !== '');
+            if (penjelasanRow) {
+                html += `
+                <div class="info-section">
+                    <div class="info-label">Penjelasan Umum</div>
+                    <div class="info-content">${penjelasanRow['Penjelasan Umum']}</div>
+                </div>
+                `;
+            }
+
+            // Dukungan Primer - Display each row as separate card
+            const primerRows = filteredData.filter(row => 
+                row['Dukungan Langsung (Primer)'] && row['Dukungan Langsung (Primer)'].trim() !== ''
+            );
+            
+            if (primerRows.length > 0) {
+                html += `<div class="info-section"><div class="info-label">Dukungan Langsung (Primer)</div>`;
+                primerRows.forEach((data, index) => {
+                    html += `
+                        <div class="pointer-card">
+                            <span class="pointer-number">Pointer ${index + 1}</span>
+                            ${data.ImageURL && data.ImageURL.trim() !== '' ? 
+                                `<img src="${data.ImageURL.trim()}" alt="Primer ${index+1}" onerror="this.style.display='none'">` 
+                                : ''}
+                            <div class="info-content">${data['Dukungan Langsung (Primer)']}</div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            // Dukungan Sekunder - Display each row as separate card
+            const sekunderRows = filteredData.filter(row => 
+                row['Dukungan Tidak Langsung (Sekunder)'] && 
+                row['Dukungan Tidak Langsung (Sekunder)'].trim() !== '' && 
+                row['Dukungan Tidak Langsung (Sekunder)'].toLowerCase() !== 'tidak ada'
+            );
+            
+            if (sekunderRows.length > 0) {
+                html += `<div class="info-section"><div class="info-label">Dukungan Tidak Langsung (Sekunder)</div>`;
+                sekunderRows.forEach((data, index) => {
+                    html += `
+                        <div class="pointer-card secondary-card">
+                            <span class="pointer-number">Sekunder ${index + 1}</span>
+                            ${data.ImageURL && data.ImageURL.trim() !== '' ? 
+                                `<img src="${data.ImageURL.trim()}" alt="Sekunder ${index+1}" onerror="this.style.display='none'">` 
+                                : ''}
+                            <div class="info-content">${data['Dukungan Tidak Langsung (Sekunder)']}</div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            // Temuan Kritis (dari baris pertama yang memiliki data)
+            const temuanRow = filteredData.find(row => row['Temuan Kritis'] && row['Temuan Kritis'].trim() !== '');
+            if (temuanRow) {
+                html += `
+                <div class="info-section">
+                    <div class="info-label">Temuan Kritis</div>
+                    <div class="info-content">${temuanRow['Temuan Kritis']}</div>
+                </div>
+                `;
+            }
+
+            sdgModalBody.innerHTML = html;
+        }
+
+        // Initialize circle listeners
+        function initializeCircleListeners() {
+            const circles = document.querySelectorAll('.circle');
+            circles.forEach(circle => {
+                circle.addEventListener('click', function() {
+                    const kawasan = this.getAttribute('data-kawasan');
+                    const sdg = this.getAttribute('data-sdg');
+                    showKawasanModal(kawasan, sdg);
+                });
+            });
+        }
+
+        // Initialize SDG icon listeners
+        function initializeSDGIconListeners() {
+            const sdgIcons = document.querySelectorAll('.sdg-icon');
+            sdgIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    if (!this.classList.contains('no-data')) {
+                        const sdgNumber = this.getAttribute('data-sdg');
+                        showSDGModal(sdgNumber);
+                    }
+                });
+            });
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            loadKawasanData();
+            loadSDGData();
+            initializeCircleListeners();
+            initializeSDGIconListeners();
+        });
+    </script>
 </body>
 </html>
