@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriks Integrasi Pola Ruang RTRW & 17 SDGs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .sdg-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .sdg-icon {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.2s;
+        }
+        
+        .sdg-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .sdg-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .content {
+            padding: 30px;
+            overflow-x: auto;
+        }
+        
+        .matrix-container {
+            min-width: 1200px;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 20px 0 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 20px;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #0891b2;
+            min-width: 50px;
+            width: 50px;
+            height: 50px;
+        }
+        
+        th:first-child {
+            border-top-left-radius: 8px;
+            width: auto;
+            min-width: 250px;
+        }
+        
+        th:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            background: white;
+            min-width: 50px;
+            width: 50px;
+            height: 50px;
+        }
+        
+        td:first-child {
+            text-align: left;
+            font-weight: 500;
+            background: #f9fafb;
+            color: #1f2937;
+            width: auto;
+            min-width: 250px;
+        }
+        
+        tr:hover td {
+            background: #fef3c7;
+        }
+        
+        .circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            margin: 0 auto;
+            transition: transform 0.2s;
+        }
+        
+        .circle:hover {
+            transform: scale(1.2);
+        }
+        
+        .primary {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.4);
+        }
+        
+        .secondary {
+            background: white;
+            border: 3px solid #ef4444;
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            color: #334155;
+        }
+        
+        .legend-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Matriks Integrasi Pola Ruang RTRW & 17 SDGs</h1>
+            <div class="sdg-icons">
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sustainable_Development_Goal_01NoPoverty.svg/500px-Sustainable_Development_Goal_01NoPoverty.svg.png" alt="SDG 1"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Sustainable_Development_Goal_02ZeroHunger.svg/500px-Sustainable_Development_Goal_02ZeroHunger.svg.png" alt="SDG 2"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Sustainable_Development_Goal_03GoodHealth.svg/500px-Sustainable_Development_Goal_03GoodHealth.svg.png" alt="SDG 3"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sustainable_Development_Goal_04QualityEducation.svg/500px-Sustainable_Development_Goal_04QualityEducation.svg.png" alt="SDG 4"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sustainable_Development_Goal_05GenderEquality.svg/500px-Sustainable_Development_Goal_05GenderEquality.svg.png" alt="SDG 5"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Sustainable_Development_Goal_06CleanWaterSanitation.svg/500px-Sustainable_Development_Goal_06CleanWaterSanitation.svg.png" alt="SDG 6"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_07CleanEnergy.svg/500px-Sustainable_Development_Goal_07CleanEnergy.svg.png" alt="SDG 7"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sustainable_Development_Goal_08DecentWork.svg/500px-Sustainable_Development_Goal_08DecentWork.svg.png" alt="SDG 8"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sustainable_Development_Goal_09Industry.svg/500px-Sustainable_Development_Goal_09Industry.svg.png" alt="SDG 9"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_10ReducedInequalities.svg/500px-Sustainable_Development_Goal_10ReducedInequalities.svg.png" alt="SDG 10"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Sustainable_Development_Goal_11SustainableCities.svg/500px-Sustainable_Development_Goal_11SustainableCities.svg.png" alt="SDG 11"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Sustainable_Development_Goal_12ResponsibleConsumption.svg/500px-Sustainable_Development_Goal_12ResponsibleConsumption.svg.png" alt="SDG 12"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Sustainable_Development_Goal_13Climate.svg/500px-Sustainable_Development_Goal_13Climate.svg.png" alt="SDG 13"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Sustainable_Development_Goal_14LifeBelowWater.svg/500px-Sustainable_Development_Goal_14LifeBelowWater.svg.png" alt="SDG 14"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sustainable_Development_Goal_15LifeOnLand.svg/500px-Sustainable_Development_Goal_15LifeOnLand.svg.png" alt="SDG 15"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg/500px-Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg.png" alt="SDG 16"></div>
+                <div class="sdg-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sustainable_Development_Goal_17Partnerships.svg/500px-Sustainable_Development_Goal_17Partnerships.svg.png" alt="SDG 17"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="matrix-container">
+                <div class="section-header">KAWASAN LINDUNG</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kategori Kawasan</th>
+                            <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. Cagar Alam & Cagar Alam Laut</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>2. Bentang Alam Karst</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>3. Hutan Lindung</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>4. Kawasan Resapan Air</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>5. Sempadan Pantai</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>6. Sempadan Sungai</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>7. Sungai</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>8. Taman Nasional & Taman Nasional Laut</td>
+                            <td></td><td></td><td></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="section-header">KAWASAN BUDIDAYA</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kategori Kawasan</th>
+                            <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10. Kawasan Hutan Produksi</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>11. Kawasan Perikanan</td>
+                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>12. Pertanian Lahan Basah</td>
+                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>13. Pertanian Lahan Kering</td>
+                            <td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>14. Pertanian Hortikultura</td>
+                            <td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>15. Kawasan Peruntukan Industri</td>
+                            <td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>16. Kawasan Berikat</td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td>
+                        </tr>
+                        <tr>
+                            <td>17. Kawasan Permukiman (Perkotaan)</td>
+                            <td><div class="circle secondary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td><div class="circle secondary"></div></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>18. Permukiman Perdesaan</td>
+                            <td><div class="circle primary"></div></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td><div class="circle primary"></div></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-circle primary"></div>
+                    <span>Dukungan Langsung (Primer)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle secondary"></div>
+                    <span>Dukungan Tidak Langsung (Sekunder)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
