@@ -329,6 +329,15 @@
             font-weight: 600;
             margin-top: 5px;
         }
+
+        .debug-info {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 20px;
+            color: #6b7280;
+        }
     </style>
 </head>
 <body>
@@ -480,39 +489,36 @@
         </div>
     </div>
 
+    <!-- Load PapaParse Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
     <script>
-        // URL Google Spreadsheet (format CSV)
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?output=csv';
+        // Spreadsheet Configuration
+        const SPREADSHEET_ID = '1IYXBZ1vMc-3ilct05RJB-emlqkm8dahmNzsQkTqGtpg';
+        const SHEET_GID = '230507739';
+        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
         
         let spreadsheetData = [];
 
-        // Parse CSV to JSON
-        function parseCSV(csv) {
-            const lines = csv.split('\n');
-            const headers = lines[0].split(',').map(h => h.trim());
-            const result = [];
-
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim() === '') continue;
-                
-                const obj = {};
-                const currentLine = lines[i].split(',');
-                
-                for (let j = 0; j < headers.length; j++) {
-                    obj[headers[j]] = currentLine[j] ? currentLine[j].trim() : '';
-                }
-                result.push(obj);
-            }
-            return result;
-        }
-
-        // Load data from Google Sheets
+        // Load data from Google Sheets using PapaParse
         async function loadSpreadsheetData() {
             try {
-                const response = await fetch(SHEET_URL);
-                const csvText = await response.text();
-                spreadsheetData = parseCSV(csvText);
-                console.log('Data loaded:', spreadsheetData.length, 'rows');
+                console.log('Loading data from:', SHEET_URL);
+                
+                Papa.parse(SHEET_URL, {
+                    download: true,
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: function(results) {
+                        spreadsheetData = results.data;
+                        console.log('Data berhasil dimuat:', spreadsheetData.length, 'baris');
+                        console.log('Sample data:', spreadsheetData[0]);
+                        console.log('Kolom yang tersedia:', Object.keys(spreadsheetData[0] || {}));
+                    },
+                    error: function(error) {
+                        console.error('Error parsing CSV:', error);
+                    }
+                });
             } catch (error) {
                 console.error('Error loading spreadsheet:', error);
             }
@@ -544,35 +550,51 @@
             modalSDG.textContent = `SDG ${sdg}`;
             modalBody.innerHTML = '<div class="loading">Memuat data</div>';
 
-            // Filter data based on Kawasan and SDG
+            console.log('Mencari data untuk:', { kawasan, sdg });
+            console.log('Total data tersedia:', spreadsheetData.length);
+
+            // Filter data based on Kawasan and SDG dengan berbagai variasi pencocokan
             const filteredData = spreadsheetData.filter(row => {
-                const rowKawasan = row.Kawasan || '';
-                const rowSDG = row.SDG || '';
-                return rowKawasan.includes(kawasan) && rowSDG == sdg;
+                const rowKawasan = (row.Kawasan || '').trim();
+                const rowSDG = (row.SDG || '').toString().trim();
+                const sdgStr = sdg.toString().trim();
+                
+                // Coba berbagai cara matching
+                const kawasanMatch = rowKawasan.toLowerCase().includes(kawasan.toLowerCase()) || 
+                                    kawasan.toLowerCase().includes(rowKawasan.toLowerCase());
+                const sdgMatch = rowSDG === sdgStr || rowSDG === `SDG ${sdgStr}` || rowSDG === `SDG${sdgStr}`;
+                
+                if (kawasanMatch && sdgMatch) {
+                    console.log('Match found:', row);
+                }
+                
+                return kawasanMatch && sdgMatch;
             });
+
+            console.log('Data yang cocok:', filteredData.length);
 
             // Display data
             if (filteredData.length > 0) {
                 let html = '';
                 filteredData.forEach((data, index) => {
                     html += `
-                        ${data.ImageURL && data.ImageURL !== '' ? `<img src="${data.ImageURL}" alt="${data.Kegiatan_Objek}" class="modal-image" onerror="this.style.display='none'">` : ''}
+                        ${data.ImageURL && data.ImageURL.trim() !== '' ? `<img src="${data.ImageURL.trim()}" alt="${data.Kegiatan_Objek || ''}" class="modal-image" onerror="this.style.display='none'">` : ''}
                         
-                        ${data.Kegiatan_Objek && data.Kegiatan_Objek !== '' ? `
+                        ${data.Kegiatan_Objek && data.Kegiatan_Objek.trim() !== '' ? `
                         <div class="info-section">
                             <div class="info-label">Kegiatan / Objek</div>
                             <div class="info-content">${data.Kegiatan_Objek}</div>
                         </div>
                         ` : ''}
                         
-                        ${data.Posisi_Ridge2Reef && data.Posisi_Ridge2Reef !== '' ? `
+                        ${data.Posisi_Ridge2Reef && data.Posisi_Ridge2Reef.trim() !== '' ? `
                         <div class="info-section">
                             <div class="info-label">Posisi Ridge to Reef</div>
                             <div class="ridge2reef-badge">${data.Posisi_Ridge2Reef}</div>
                         </div>
                         ` : ''}
                         
-                        ${data.Narasi && data.Narasi !== '' ? `
+                        ${data.Narasi && data.Narasi.trim() !== '' ? `
                         <div class="info-section">
                             <div class="info-label">Narasi</div>
                             <div class="info-content">${data.Narasi}</div>
@@ -584,7 +606,17 @@
                 });
                 modalBody.innerHTML = html;
             } else {
-                modalBody.innerHTML = '<div class="no-data">Tidak ada data untuk kombinasi kawasan dan SDG ini.</div>';
+                // Tampilkan info debug untuk membantu troubleshooting
+                const debugInfo = `
+                    <div class="no-data">Tidak ada data untuk kombinasi kawasan dan SDG ini.</div>
+                    <div class="debug-info">
+                        <strong>Debug Info:</strong><br>
+                        Mencari: Kawasan = "${kawasan}", SDG = "${sdg}"<br>
+                        Total data di spreadsheet: ${spreadsheetData.length} baris<br>
+                        ${spreadsheetData.length > 0 ? `Kolom tersedia: ${Object.keys(spreadsheetData[0]).join(', ')}` : 'Tidak ada data dimuat'}
+                    </div>
+                `;
+                modalBody.innerHTML = debugInfo;
             }
         }
 
@@ -604,6 +636,11 @@
         window.addEventListener('DOMContentLoaded', async function() {
             await loadSpreadsheetData();
             initializeCircleListeners();
+            
+            // Tunggu sebentar untuk memastikan data sudah dimuat
+            setTimeout(() => {
+                console.log('Status akhir: Data loaded =', spreadsheetData.length, 'rows');
+            }, 3000);
         });
     </script>
 </body>
