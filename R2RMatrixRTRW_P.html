@@ -450,7 +450,7 @@
                 <div class="sdg-icon" data-sdg="4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sustainable_Development_Goal_04QualityEducation.svg/500px-Sustainable_Development_Goal_04QualityEducation.svg.png" alt="SDG 4"></div>
                 <div class="sdg-icon" data-sdg="5"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sustainable_Development_Goal_05GenderEquality.svg/500px-Sustainable_Development_Goal_05GenderEquality.svg.png" alt="SDG 5"></div>
                 <div class="sdg-icon" data-sdg="6"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Sustainable_Development_Goal_06CleanWaterSanitation.svg/500px-Sustainable_Development_Goal_06CleanWaterSanitation.svg.png" alt="SDG 6"></div>
-                <div class="sdg-icon" data-sdg="7"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_07CleanEnergy.svg/500px-Sustainable_Development_Goal_07CleanEnergy.svg.png" alt="SDG 7"></div>
+                <div class="sdg-icon" data-sdg="7"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_07CleanEnergy.svg/500px-Sustainable_Goal_07CleanEnergy.svg.png" alt="SDG 7"></div>
                 <div class="sdg-icon" data-sdg="8"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sustainable_Development_Goal_08DecentWork.svg/500px-Sustainable_Development_Goal_08DecentWork.svg.png" alt="SDG 8"></div>
                 <div class="sdg-icon" data-sdg="9"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sustainable_Development_Goal_09Industry.svg/500px-Sustainable_Development_Goal_09Industry.svg.png" alt="SDG 9"></div>
                 <div class="sdg-icon" data-sdg="10"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_10ReducedInequalities.svg/500px-Sustainable_Development_Goal_10ReducedInequalities.svg.png" alt="SDG 10"></div>
@@ -753,7 +753,7 @@
             }
         }
 
-        // Show SDG modal with MULTIPLE ROWS support
+        // Show SDG modal with MULTIPLE ROWS support & AUTO DEDUPLICATE
         function showSDGModal(sdgNumber) {
             const filteredData = sdgData.filter(row => {
                 const rowSDG = (row.SDG || '').toString().trim();
@@ -771,11 +771,6 @@
             
             sdgModalTitle.textContent = `SDG ${firstRow.SDG}`;
             sdgModalSubtitle.textContent = `${firstRow['Nama SDG'] || ''} `;
-            
-            // Add pointer count badge
-            if (filteredData.length > 1) {
-                sdgModalSubtitle.innerHTML += `<span class="pointer-count-badge">${filteredData.length} Pointer</span>`;
-            }
 
             let html = '';
             
@@ -790,14 +785,31 @@
                 `;
             }
 
-            // Dukungan Primer - Display each row as separate card
+            // Dukungan Primer - Display each row as separate card (with AUTO DEDUPLICATION)
             const primerRows = filteredData.filter(row => 
                 row['Dukungan Langsung (Primer)'] && row['Dukungan Langsung (Primer)'].trim() !== ''
             );
             
-            if (primerRows.length > 0) {
+            // ✅ AUTO DEDUPLICATE - Remove duplicates based on content
+            const uniquePrimerRows = [];
+            const seenPrimerContent = new Set();
+            primerRows.forEach(row => {
+                const content = row['Dukungan Langsung (Primer)'].trim();
+                if (!seenPrimerContent.has(content)) {
+                    seenPrimerContent.add(content);
+                    uniquePrimerRows.push(row);
+                }
+            });
+            
+            if (uniquePrimerRows.length > 0) {
                 html += `<div class="info-section"><div class="info-label">Dukungan Langsung (Primer)</div>`;
-                primerRows.forEach((data, index) => {
+                
+                // Update pointer count badge with unique count
+                if (uniquePrimerRows.length > 1) {
+                    sdgModalSubtitle.innerHTML = `${firstRow['Nama SDG'] || ''} <span class="pointer-count-badge">${uniquePrimerRows.length} Pointer</span>`;
+                }
+                
+                uniquePrimerRows.forEach((data, index) => {
                     html += `
                         <div class="pointer-card">
                             <span class="pointer-number">Pointer ${index + 1}</span>
@@ -811,16 +823,27 @@
                 html += `</div>`;
             }
 
-            // Dukungan Sekunder - Display each row as separate card
+            // Dukungan Sekunder - Display each row as separate card (with AUTO DEDUPLICATION)
             const sekunderRows = filteredData.filter(row => 
                 row['Dukungan Tidak Langsung (Sekunder)'] && 
                 row['Dukungan Tidak Langsung (Sekunder)'].trim() !== '' && 
                 row['Dukungan Tidak Langsung (Sekunder)'].toLowerCase() !== 'tidak ada'
             );
             
-            if (sekunderRows.length > 0) {
+            // ✅ AUTO DEDUPLICATE - Remove duplicates based on content
+            const uniqueSekunderRows = [];
+            const seenSekunderContent = new Set();
+            sekunderRows.forEach(row => {
+                const content = row['Dukungan Tidak Langsung (Sekunder)'].trim();
+                if (!seenSekunderContent.has(content)) {
+                    seenSekunderContent.add(content);
+                    uniqueSekunderRows.push(row);
+                }
+            });
+            
+            if (uniqueSekunderRows.length > 0) {
                 html += `<div class="info-section"><div class="info-label">Dukungan Tidak Langsung (Sekunder)</div>`;
-                sekunderRows.forEach((data, index) => {
+                uniqueSekunderRows.forEach((data, index) => {
                     html += `
                         <div class="pointer-card secondary-card">
                             <span class="pointer-number">Sekunder ${index + 1}</span>
