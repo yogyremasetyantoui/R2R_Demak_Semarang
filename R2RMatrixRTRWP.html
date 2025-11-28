@@ -332,11 +332,12 @@
 
         .debug-info {
             background: #f3f4f6;
-            padding: 10px;
+            padding: 15px;
             border-radius: 8px;
             font-size: 12px;
             margin-top: 20px;
             color: #6b7280;
+            text-align: left;
         }
     </style>
 </head>
@@ -493,10 +494,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     
     <script>
-        // Spreadsheet Configuration
-        const SPREADSHEET_ID = '1IYXBZ1vMc-3ilct05RJB-emlqkm8dahmNzsQkTqGtpg';
-        const SHEET_GID = '230507739';
-        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
+        // Published CSV URL from Google Sheets
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?gid=230507739&single=true&output=csv';
         
         let spreadsheetData = [];
 
@@ -511,16 +510,16 @@
                     skipEmptyLines: true,
                     complete: function(results) {
                         spreadsheetData = results.data;
-                        console.log('Data berhasil dimuat:', spreadsheetData.length, 'baris');
+                        console.log('✓ Data berhasil dimuat:', spreadsheetData.length, 'baris');
                         console.log('Sample data:', spreadsheetData[0]);
                         console.log('Kolom yang tersedia:', Object.keys(spreadsheetData[0] || {}));
                     },
                     error: function(error) {
-                        console.error('Error parsing CSV:', error);
+                        console.error('✗ Error parsing CSV:', error);
                     }
                 });
             } catch (error) {
-                console.error('Error loading spreadsheet:', error);
+                console.error('✗ Error loading spreadsheet:', error);
             }
         }
 
@@ -562,10 +561,10 @@
                 // Coba berbagai cara matching
                 const kawasanMatch = rowKawasan.toLowerCase().includes(kawasan.toLowerCase()) || 
                                     kawasan.toLowerCase().includes(rowKawasan.toLowerCase());
-                const sdgMatch = rowSDG === sdgStr || rowSDG === `SDG ${sdgStr}` || rowSDG === `SDG${sdgStr}`;
+                const sdgMatch = rowSDG === sdgStr || rowSDG === `SDG ${sdgStr}` || rowSDG === `SDG${sdgStr}` || rowSDG === `${sdgStr}`;
                 
                 if (kawasanMatch && sdgMatch) {
-                    console.log('Match found:', row);
+                    console.log('✓ Match found:', row);
                 }
                 
                 return kawasanMatch && sdgMatch;
@@ -612,8 +611,12 @@
                     <div class="debug-info">
                         <strong>Debug Info:</strong><br>
                         Mencari: Kawasan = "${kawasan}", SDG = "${sdg}"<br>
-                        Total data di spreadsheet: ${spreadsheetData.length} baris<br>
-                        ${spreadsheetData.length > 0 ? `Kolom tersedia: ${Object.keys(spreadsheetData[0]).join(', ')}` : 'Tidak ada data dimuat'}
+                        Total data di spreadsheet: ${spreadsheetData.length} baris<br><br>
+                        ${spreadsheetData.length > 0 ? `
+                            <strong>Kolom tersedia:</strong> ${Object.keys(spreadsheetData[0]).join(', ')}<br><br>
+                            <strong>Sample data baris pertama:</strong><br>
+                            <pre style="font-size: 11px; overflow-x: auto;">${JSON.stringify(spreadsheetData[0], null, 2)}</pre>
+                        ` : 'Tidak ada data dimuat. Pastikan spreadsheet sudah dipublish dengan benar.'}
                     </div>
                 `;
                 modalBody.innerHTML = debugInfo;
