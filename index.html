@@ -97,6 +97,68 @@
             margin-bottom: 30px;
         }
 
+        /* Author Section */
+        .author-section {
+            max-width: 700px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .author-logo {
+            flex-shrink: 0;
+        }
+
+        .author-logo img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        .author-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .author-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .author-nim {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .author-course {
+            font-size: 15px;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .author-institution {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .author-institution strong {
+            color: #e2e8f0;
+            display: block;
+        }
+
         .intro-box {
             max-width: 900px;
             margin: 30px auto;
@@ -111,50 +173,6 @@
             font-size: 18px;
             line-height: 1.8;
             color: #cbd5e1;
-        }
-
-        /* Credit Box */
-        .credit-box {
-            max-width: 700px;
-            margin: 25px auto;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 25px 35px;
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            text-align: center;
-        }
-
-        .credit-author {
-            font-size: 20px;
-            font-weight: 600;
-            color: #0ea5e9;
-            margin-bottom: 8px;
-        }
-
-        .credit-nim {
-            font-size: 14px;
-            color: #94a3b8;
-            margin-bottom: 15px;
-        }
-
-        .credit-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.5), transparent);
-            margin: 15px 0;
-        }
-
-        .credit-assignment {
-            font-size: 14px;
-            color: #cbd5e1;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .credit-institution {
-            font-size: 13px;
-            color: #94a3b8;
-            line-height: 1.6;
         }
 
         /* Stats Bar */
@@ -590,6 +608,15 @@
             .featured-highlights {
                 grid-template-columns: 1fr;
             }
+
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .author-content {
+                text-align: center;
+            }
         }
 
         @media (max-width: 768px) {
@@ -613,8 +640,9 @@
                 font-size: 28px;
             }
 
-            .credit-box {
-                padding: 20px 25px;
+            .author-logo img {
+                width: 80px;
+                height: 80px;
             }
         }
 
@@ -642,6 +670,23 @@
             <p class="subtitle">Sistem Konektivitas Ekosistem Terintegrasi</p>
             <p class="location">📍 Kawasan Semarang - Demak, Jawa Tengah</p>
 
+            <!-- Author Section -->
+            <div class="author-section">
+                <div class="author-logo">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUbciY5_TAfLBxqOht-KedyV-ZArXNwgF48ZW8SIHZoTwd0xIMCM5kLrQ4eUQBZt0lBkdc-hY3yfmff-U87xNbFWonHR0P29NYFLUoldESPmz0E6nw2k0QFM1aQr2R_tVFOd7fMxbZ3viDWshiTZ5j37ZX7Lh4AOaNQkZp7U1Fy8bo3dx_K0fa3g/s1536/UI%20(Universitas%20Indonesia)%20Logo%20-%20(Koleksilogo.com).png" alt="Logo UI">
+                </div>
+                <div class="author-content">
+                    <div class="author-name">Yogyrema Setyanto Putra</div>
+                    <div class="author-nim">NIM: 2506562513</div>
+                    <div class="author-course">Tugas Geografi Pembangunan Berkelanjutan</div>
+                    <div class="author-institution">
+                        <strong>Departemen Geografi</strong>
+                        Fakultas Matematika dan Ilmu Pengetahuan Alam<br>
+                        Universitas Indonesia
+                    </div>
+                </div>
+            </div>
+
             <div class="intro-box">
                 <p>
                     <strong>Ridge to Reef</strong> adalah pendekatan holistik yang menghubungkan ekosistem dari <strong>puncak gunung (ridge)</strong> 
@@ -649,18 +694,6 @@
                     <strong>5 sistem kritis</strong>: Hidrologi, Sedimen, Karbon, Biologis, dan Ekonomi yang saling terkait dan 
                     bergantung satu sama lain untuk keberlanjutan lingkungan dan kesejahteraan masyarakat.
                 </p>
-            </div>
-
-            <!-- Credit Box -->
-            <div class="credit-box">
-                <div class="credit-author">Yogyrema Setyanto Putra</div>
-                <div class="credit-nim">NIM: 2506562513</div>
-                <div class="credit-divider"></div>
-                <div class="credit-assignment">Tugas Geografi Pembangunan Berkelanjutan</div>
-                <div class="credit-institution">
-                    Departemen Geografi<br>
-                    Fakultas Matematika dan Ilmu Pengetahuan Alam
-                </div>
             </div>
         </div>
 
