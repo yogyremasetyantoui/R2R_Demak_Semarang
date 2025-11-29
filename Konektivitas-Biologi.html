@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konektivitas Biologis: Ecological Connectivity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+            padding: 20px;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(5, 150, 105, 0.4);
+        }
+
+        .hero-section h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-section .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Ecological Flow Path */
+        .flow-path {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .flow-path-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #065f46;
+        }
+
+        .ecology-journey {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 20px 0;
+            overflow-x: auto;
+        }
+
+        .journey-step {
+            flex: 1;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 3px solid #059669;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .journey-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(5, 150, 105, 0.3);
+        }
+
+        .journey-icon {
+            font-size: 56px;
+            margin-bottom: 12px;
+        }
+
+        .journey-label {
+            font-weight: 700;
+            font-size: 16px;
+            color: #065f46;
+            margin-bottom: 12px;
+        }
+
+        .species-list {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .flow-arrow {
+            font-size: 36px;
+            color: #059669;
+            animation: flowAnimation 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes flowAnimation {
+            0%, 100% { transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(10px); opacity: 0.5; }
+        }
+
+        /* Flagship Species Grid */
+        .flagship-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .flagship-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #065f46;
+        }
+
+        .flagship-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .flagship-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 3px solid #059669;
+            transition: all 0.3s;
+        }
+
+        .flagship-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(5, 150, 105, 0.3);
+        }
+
+        .flagship-icon {
+            font-size: 72px;
+            margin-bottom: 15px;
+        }
+
+        .flagship-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #065f46;
+            margin-bottom: 10px;
+        }
+
+        .flagship-latin {
+            font-size: 12px;
+            font-style: italic;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .flagship-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .status-critical {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-endangered {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .flagship-role {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        /* Ecosystem Services */
+        .services-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .services-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #065f46;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 16px;
+            padding: 30px;
+            border-left: 5px solid #059669;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .service-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #065f46;
+            margin-bottom: 12px;
+        }
+
+        .service-desc {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .service-evidence {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #64748b;
+            border-left: 3px solid #f59e0b;
+        }
+
+        /* Corridor Section */
+        .corridor-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .corridor-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0ea5e9;
+        }
+
+        .corridor-highlight {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 16px;
+            padding: 30px;
+            border: 3px solid #0ea5e9;
+            margin-bottom: 30px;
+        }
+
+        .corridor-highlight h3 {
+            font-size: 24px;
+            color: #0c4a6e;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .corridor-diagram {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .corridor-path {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .corridor-node {
+            background: linear-gradient(135deg, #dcfce7 0%, #a7f3d0 100%);
+            padding: 20px 25px;
+            border-radius: 16px;
+            border: 2px solid #059669;
+            font-weight: 600;
+            min-width: 150px;
+        }
+
+        .corridor-node.blocked {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-color: #dc2626;
+            position: relative;
+        }
+
+        .corridor-node.blocked::before {
+            content: '🚧';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 32px;
+        }
+
+        .corridor-arrow {
+            font-size: 32px;
+            color: #059669;
+        }
+
+        /* Threat Section */
+        .threat-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .threat-title {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #dc2626;
+        }
+
+        .threat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .threat-card {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-radius: 16px;
+            padding: 30px;
+            border-left: 5px solid #dc2626;
+            transition: all 0.3s;
+        }
+
+        .threat-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.2);
+        }
+
+        .threat-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #dc2626;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .threat-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #991b1b;
+            margin-bottom: 15px;
+        }
+
+        .threat-impact {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .threat-evidence {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #64748b;
+            border-left: 3px solid #f59e0b;
+        }
+
+        /* Cascade Section */
+        .cascade-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .cascade-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #dc2626;
+        }
+
+        .cascade-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        .cascade-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cascade-item {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            padding: 20px 25px;
+            border-radius: 12px;
+            border: 2px solid #dc2626;
+            font-weight: 600;
+            text-align: center;
+            min-width: 180px;
+            transition: all 0.3s;
+        }
+
+        .cascade-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);
+        }
+
+        .cascade-arrow {
+            font-size: 32px;
+            color: #dc2626;
+        }
+
+        /* Solution Box */
+        .solution-box {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 15px 50px rgba(5, 150, 105, 0.4);
+        }
+
+        .solution-box h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin-top: 25px;
+            text-align: left;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .solution-list li {
+            background: rgba(255,255,255,0.2);
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            line-height: 1.7;
+        }
+
+        .solution-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .solution-content {
+            flex: 1;
+        }
+
+        .solution-content strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(5, 150, 105, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #059669;
+            border: 2px solid #059669;
+        }
+
+        .btn-secondary:hover {
+            background: #f0fdf4;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .flagship-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .threat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .flagship-grid {
+                grid-template-columns: 1fr;
+            }
+            .ecology-journey {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+            .cascade-flow {
+                flex-direction: column;
+            }
+            .cascade-arrow {
+                transform: rotate(90deg);
+            }
+            .corridor-path {
+                flex-direction: column;
+            }
+            .corridor-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>🦅 KONEKTIVITAS BIOLOGIS</h1>
+            <p class="subtitle">Jaringan Ekologi Terintegrasi: Habitat, Koridor, dan Spesies dari Ridge hingga Reef</p>
+        </div>
+
+        <!-- Ecological Flow Path -->
+        <div class="flow-path">
+            <div class="flow-path-title">🌿 Alur Lengkap Konektivitas Ekologi</div>
+            <div class="ecology-journey">
+                <div class="journey-step">
+                    <div class="journey-icon">🏔️</div>
+                    <div class="journey-label">HABITAT HULU</div>
+                    <div class="species-list">
+                        <strong>Spesies Flagship:</strong><br>
+                        🦅 Elang Jawa<br>
+                        🐆 Macan Tutul Jawa<br>
+                        🐒 Owa Jawa
+                    </div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">🌊</div>
+                    <div class="journey-label">KORIDOR SEMPADAN SUNGAI</div>
+                    <div class="species-list">
+                        <strong>"Jalan Tol" Satwa Urban</strong><br>
+                        Satu-satunya jalur di tengah beton kota
+                    </div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">🌳</div>
+                    <div class="journey-label">MANGROVE PESISIR</div>
+                    <div class="species-list">
+                        🦇 Kelelawar Karst<br>
+                        🦆 Burung Air<br>
+                        🦀 Kepiting Bakau<br>
+                        <strong>Nursery Ground</strong>
+                    </div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">🪸</div>
+                    <div class="journey-label">TERUMBU KARANG LAUT</div>
+                    <div class="species-list">
+                        🐠 Ikan Karang<br>
+                        🐡 Biota Laut<br>
+                        <strong>Spill-over Effect</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flagship Species -->
+        <div class="flagship-section">
+            <div class="flagship-title">🦅 Spesies Flagship & Indikator Ekosistem</div>
+            <div class="flagship-grid">
+                <div class="flagship-card">
+                    <div class="flagship-icon">🦅</div>
+                    <div class="flagship-name">Elang Jawa</div>
+                    <div class="flagship-latin">Nisaetus bartelsi</div>
+                    <div class="flagship-status status-critical">Kritis (Endangered)</div>
+                    <div class="flagship-role">
+                        Predator puncak hutan Ungaran. Indikator kesehatan hutan. Memerlukan habitat luas untuk berburu.
+                    </div>
+                </div>
+
+                <div class="flagship-card">
+                    <div class="flagship-icon">🐒</div>
+                    <div class="flagship-name">Owa Jawa</div>
+                    <div class="flagship-latin">Hylobates moloch</div>
+                    <div class="flagship-status status-endangered">Terancam Punah</div>
+                    <div class="flagship-role">
+                        Penghuni kanopi hutan Petungkriyono. Penyebar benih pohon hutan. Sensitif terhadap fragmentasi habitat.
+                    </div>
+                </div>
+
+                <div class="flagship-card">
+                    <div class="flagship-icon">🐆</div>
+                    <div class="flagship-name">Macan Tutul Jawa</div>
+                    <div class="flagship-latin">Panthera pardus melas</div>
+                    <div class="flagship-status status-critical">Kritis</div>
+                    <div class="flagship-role">
+                        Predator apex Cagar Alam Muria. Memerlukan koridor untuk jelajah. Indikator konektivitas habitat.
+                    </div>
+                </div>
+
+                <div class="flagship-card">
+                    <div class="flagship-icon">🦇</div>
+                    <div class="flagship-name">Kelelawar Karst</div>
+                    <div class="flagship-latin">Multiple species</div>
+                    <div class="flagship-status" style="background: #dcfce7; color: #065f46;">Pengendali Hama</div>
+                    <div class="flagship-role">
+                        Jelajah 10 km dari gua ke sawah. Kontrol hama alami, mengurangi pestisida. Kunci produktivitas pertanian.
+                    </div>
+                </div>
+
+                <div class="flagship-card">
+                    <div class="flagship-icon">🦆</div>
+                    <div class="flagship-name">Burung Air</div>
+                    <div class="flagship-latin">Multiple species</div>
+                    <div class="flagship-status" style="background: #dbeafe; color: #0c4a6e;">Migratori</div>
+                    <div class="flagship-role">
+                        Bergantung pada sempadan sungai & mangrove. Indikator kualitas air dan habitat pesisir.
+                    </div>
+                </div>
+
+                <div class="flagship-card">
+                    <div class="flagship-icon">🦀</div>
+                    <div class="flagship-name">Kepiting Bakau</div>
+                    <div class="flagship-latin">Scylla spp.</div>
+                    <div class="flagship-status" style="background: #dcfce7; color: #065f46;">Ekonomis</div>
+                    <div class="flagship-role">
+                        Spesies kunci mangrove. Indikator kesehatan ekosistem pesisir. Nilai ekonomi tinggi.
+                    </div>
+                </div>
+
+                <div class="flagship-card">
+                    <div class="flagship-icon">🐠</div>
+                    <div class="flagship-name">Ikan Karang</div>
+                    <div class="flagship-latin">Reef fish community</div>
+                    <div class="flagship-status" style="background: #dcfce7; color: #065f46;">Produktif</div>
+                    <div class="flagship-role">
+                        Zona inti Karimunjawa. Spill-over effect ke zona tangkap. Meningkatkan tangkapan nelayan.
+                    </div>
+                </div>
+
+                <div class="flagship-card">
+                    <div class="flagship-icon">🐡</div>
+                    <div class="flagship-name">Rajungan</div>
+                    <div class="flagship-latin">Portunus pelagicus</div>
+                    <div class="flagship-status" style="background: #fef3c7; color: #92400e;">Ekspor</div>
+                    <div class="flagship-role">
+                        Nursery ground di mangrove. Ekspor 1.420 ton/tahun ke AS. Bergantung pada kualitas mangrove.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ecosystem Services -->
+        <div class="services-section">
+            <div class="services-title">🔗 Bukti Keterkaitan: Ecosystem Services</div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🦇</div>
+                    <div class="service-name">Kontrol Hama Alami</div>
+                    <div class="service-desc">
+                        Kelelawar karst memiliki jelajah 10 kilometer dari gua ke sawah untuk memangsa hama serangga, mengurangi kebutuhan pestisida kimia dan meningkatkan produktivitas pertanian organik.
+                    </div>
+                    <div class="service-evidence">
+                        <strong>📊 Data:</strong> Satu koloni kelelawar bisa memakan hingga ribuan serangga hama per malam. Nilai ekonomi jasa ekosistem mencapai jutaan rupiah per tahun.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🌊</div>
+                    <div class="service-name">Koridor Satwa Urban</div>
+                    <div class="service-desc">
+                        Sempadan sungai berfungsi sebagai "jalan tol" satu-satunya bagi satwa di tengah lanskap beton Semarang, memungkinkan pergerakan satwa dan mencegah isolasi populasi.
+                    </div>
+                    <div class="service-evidence">
+                        <strong>🔍 Bukti:</strong> Camera trap mendeteksi musang, ular, burung air, dan mamalia kecil menggunakan sempadan sungai sebagai jalur migrasi dan mencari makan.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🐟</div>
+                    <div class="service-name">Nursery Ground Perikanan</div>
+                    <div class="service-desc">
+                        Mangrove berfungsi sebagai nursery ground untuk rajungan, udang, dan ikan. Memulihkan stok ikan laut dan meningkatkan tangkapan nelayan.
+                    </div>
+                    <div class="service-evidence">
+                        <strong>💰 Ekonomi:</strong> Nelayan Betahwalang melaporkan peningkatan tangkapan setelah rehabilitasi mangrove. Rajungan ekspor 1.420 ton/tahun ke AS senilai miliaran rupiah.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🐠</div>
+                    <div class="service-name">Spill-over Effect Ikan</div>
+                    <div class="service-desc">
+                        Zona inti Karimunjawa yang dilindungi menciptakan spill-over effect: ikan dari zona lindung menyebar ke zona tangkap, meningkatkan hasil tangkap nelayan.
+                    </div>
+                    <div class="service-evidence">
+                        <strong>📈 Data:</strong> Tutupan terumbu karang zona lindung 41-76% (sehat). Nelayan zona buffer melaporkan tangkapan meningkat dibanding area tanpa zona lindung.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🌳</div>
+                    <div class="service-name">Penyerbukan & Dispersal Benih</div>
+                    <div class="service-desc">
+                        Satwa seperti kelelawar, burung, dan primata berfungsi sebagai penyerbuk dan penyebar benih, menjaga regenerasi hutan dan keragaman genetik.
+                    </div>
+                    <div class="service-evidence">
+                        <strong>🌱 Ekologi:</strong> Owa Jawa menyebarkan benih pohon buah hutan. Kelelawar menyerbuki tanaman malam. Kehilangan satwa = regenerasi hutan terganggu.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🏞️</div>
+                    <div class="service-name">Ekowisata & Edukasi</div>
+                    <div class="service-desc">
+                        Keberadaan spesies flagship menarik ekowisata. TN Karimunjawa dan Cagar Alam Muria menghasilkan income dari wisata satwa liar sambil edukasi konservasi.
+                    </div>
+                    <div class="service-evidence">
+                        <strong>💼 Nilai Tambah:</strong> Ekowisata Karimunjawa menciptakan ribuan lapangan kerja. Pemandu, homestay, dan operator tour bergantung pada kesehatan ekosistem.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Corridor Critical -->
+        <div class="corridor-section">
+            <div class="corridor-title">🚧 KRITIS: Sempadan Sungai sebagai Koridor Ekologi</div>
+            
+            <div class="corridor-highlight">
+                <h3>🌊 Sempadan Sungai: "Jalan Tol" Satwa di Tengah Kota Beton</h3>
+                <p style="text-align: center; color: #0c4a6e; margin: 15px 0; font-size: 15px; line-height: 1.7;">
+                    Di tengah lanskap urban Semarang yang padat beton, <strong>sempadan sungai adalah satu-satunya koridor hijau</strong> 
+                    yang menghubungkan habitat hulu (hutan) dengan habitat hilir (mangrove & laut). Tanpa koridor ini, <strong>konektivitas ekologi terputus total</strong>.
+                </p>
+
+                <div class="corridor-diagram">
+                    <h4 style="color: #065f46; margin-bottom: 20px;">Fungsi Koridor yang Terjaga vs Terputus</h4>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <p style="color: #059669; font-weight: bold; margin-bottom: 15px;">✅ KORIDOR TERJAGA (Green Corridor)</p>
+                        <div class="corridor-path">
+                            <div class="corridor-node">🏔️ Habitat Hulu<br><small>Hutan Ungaran/Muria</small></div>
+                            <div class="corridor-arrow">→</div>
+                            <div class="corridor-node">🌊 Sempadan Sungai<br><small>Jalur Migrasi</small></div>
+                            <div class="corridor-arrow">→</div>
+                            <div class="corridor-node">🌳 Mangrove<br><small>Habitat Pesisir</small></div>
+                            <div class="corridor-arrow">→</div>
+                            <div class="corridor-node">🪸 Terumbu Karang<br><small>Habitat Laut</small></div>
+                        </div>
+                        <p style="color: #475569; margin-top: 15px; font-size: 14px;">
+                            Satwa bisa bergerak bebas, populasi terhubung, keragaman genetik terjaga, ecosystem services berfungsi optimal.
+                        </p>
+                    </div>
+
+                    <div style="padding-top: 30px; border-top: 2px solid #e5e7eb;">
+                        <p style="color: #dc2626; font-weight: bold; margin-bottom: 15px;">❌ KORIDOR TERPUTUS (Fragmentasi)</p>
+                        <div class="corridor-path">
+                            <div class="corridor-node">🏔️ Habitat Hulu</div>
+                            <div class="corridor-arrow">→</div>
+                            <div class="corridor-node blocked">🚧 Pembeton Sungai<br><small>Perumahan/Jalan</small></div>
+                            <div class="corridor-arrow" style="color: #dc2626;">✖️</div>
+                            <div class="corridor-node">🌳 Mangrove<br><small>Terisolasi</small></div>
+                            <div class="corridor-arrow" style="color: #dc2626;">✖️</div>
+                            <div class="corridor-node">🪸 Terumbu Karang<br><small>Terputus</small></div>
+                        </div>
+                        <p style="color: #dc2626; margin-top: 15px; font-size: 14px;">
+                            Populasi terisolasi → Inbreeding → Penurunan fitness → Kepunahan lokal → Ecosystem services kolaps!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Threat Section -->
+        <div class="threat-section">
+            <div class="threat-title">⚠️ 4 ANCAMAN TERPUTUSNYA KONEKTIVITAS</div>
+
+            <div class="threat-grid">
+                <div class="threat-card">
+                    <div class="threat-number">1</div>
+                    <div class="threat-name">Fragmentasi Habitat dari Pembangunan</div>
+                    <div class="threat-impact">
+                        <strong>Dampak:</strong> Perumahan dan infrastruktur memotong koridor sempadan sungai → Satwa tidak bisa bergerak → Populasi terisolasi → Kepunahan lokal
+                    </div>
+                    <div class="threat-evidence">
+                        <strong>🏘️ Contoh:</strong> Pembangunan perumahan di Semarang Atas memotong sempadan sungai. Camera trap menunjukkan penurunan drastis pergerakan satwa.
+                    </div>
+                </div>
+
+                <div class="threat-card">
+                    <div class="threat-number">2</div>
+                    <div class="threat-name">Pembeton Sempadan Sungai</div>
+                    <div class="threat-impact">
+                        <strong>Dampak:</strong> Normalisasi sungai dengan dinding beton → Satwa tidak bisa lewat → Burung air kehilangan habitat → Koridor ekologi mati
+                    </div>
+                    <div class="threat-evidence">
+                        <strong>🚧 Bukti:</strong> Sungai yang dibeton kehilangan vegetasi riparian. Burung air, reptil, dan mamalia kecil tidak bisa menggunakan koridor.
+                    </div>
+                </div>
+
+                <div class="threat-card">
+                    <div class="threat-number">3</div>
+                    <div class="threat-name">Konversi Mangrove → Tambak</div>
+                    <div class="threat-impact">
+                        <strong>Dampak:</strong> Nursery ground hilang → Stok ikan, rajungan, udang kolaps → Nelayan bangkrut → Rantai makanan laut terputus
+                    </div>
+                    <div class="threat-evidence">
+                        <strong>📉 Data:</strong> Area mangrove Demak menyusut ratusan hektare. Nelayan melaporkan penurunan tangkapan 50-70% di area mangrove yang hilang.
+                    </div>
+                </div>
+
+                <div class="threat-card">
+                    <div class="threat-number">4</div>
+                    <div class="threat-name">Sedimentasi Terumbu Karang</div>
+                    <div class="threat-impact">
+                        <strong>Dampak:</strong> Sedimen dari hulu menutupi terumbu karang → Coral bleaching → Habitat ikan karang rusak → Nelayan kehilangan fishing ground
+                    </div>
+                    <div class="threat-evidence">
+                        <strong>⚠️ Ancaman:</strong> Terumbu karang Karimunjawa (aset wisata triliunan rupiah) terancam rusak permanen dalam 20-30 tahun jika erosi hulu tidak terkendali.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cascade Effect -->
+        <div class="cascade-section">
+            <div class="cascade-title">⚡ DAMPAK CASCADE: Efek Domino Ekologi-Sosial</div>
+            <div class="cascade-subtitle">
+                Kepunahan <strong>satu spesies kunci</strong> memicu keruntuhan sistem ekologi dan sosial-ekonomi
+            </div>
+
+            <div class="cascade-flow">
+                <div class="cascade-item">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🦇</div>
+                    <strong>Kelelawar Punah</strong><br>
+                    <small>Kehilangan habitat karst</small>
+                </div>
+
+                <div class="cascade-arrow">→</div>
+
+                <div class="cascade-item">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🐛</div>
+                    <strong>Hama Meledak</strong><br>
+                    <small>Tidak ada predator alami</small>
+                </div>
+
+                <div class="cascade-arrow">→</div>
+
+                <div class="cascade-item">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🌾</div>
+                    <strong>Panen Gagal</strong><br>
+                    <small>Serangan hama masif</small>
+                </div>
+
+                <div class="cascade-arrow">→</div>
+
+                <div class="cascade-item">
+                    <div style="font-size: 32px; margin-bottom: 10px;">💸</div>
+                    <strong>Petani Miskin</strong><br>
+                    <small>Kehilangan income</small>
+                </div>
+
+                <div class="cascade-arrow">→</div>
+
+                <div class="cascade-item">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🏙️</div>
+                    <strong>Migrasi ke Kota</strong><br>
+                    <small>Urbanisasi paksa</small>
+                </div>
+
+                <div class="cascade-arrow">→</div>
+
+                <div class="cascade-item">
+                    <div style="font-size: 32px; margin-bottom: 10px;">🏚️</div>
+                    <strong>Slum Perkotaan ⬆️</strong><br>
+                    <small>Masalah sosial meningkat</small>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 12px; border: 2px solid #dc2626;">
+                <h3 style="color: #991b1b; margin-bottom: 15px; text-align: center;">⚠️ KESIMPULAN KRITIS</h3>
+                <p style="color: #1e293b; font-size: 16px; line-height: 1.8; text-align: center;">
+                    Konektivitas biologis bukan hanya soal konservasi satwa, tapi <strong>sistem penyangga kehidupan manusia</strong>.<br>
+                    Kehilangan spesies kunci = <strong>keruntuhan jasa ekosistem bernilai miliaran rupiah</strong> = <strong>krisis sosial-ekonomi</strong>.<br><br>
+                    <strong style="color: #dc2626;">Melindungi koridor ekologi = Melindungi mata pencaharian jutaan orang!</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Solution Box -->
+        <div class="solution-box">
+            <h2>💡 SOLUSI PELESTARIAN KONEKTIVITAS BIOLOGIS</h2>
+            <p style="font-size: 18px; opacity: 0.95; margin-bottom: 20px;">
+                Membangun dan memelihara koridor ekologi yang menghubungkan habitat dari ridge hingga reef
+            </p>
+
+            <ul class="solution-list">
+                <li>
+                    <span class="solution-icon">🌊</span>
+                    <div class="solution-content">
+                        <strong>Perlindungan Mutlak Sempadan Sungai sebagai Koridor Hijau</strong>
+                        Moratorium pembangunan di sempadan sungai. Renaturalisasi sungai yang sudah dibeton. Tanam vegetasi riparian sebagai habitat satwa.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">🌉</span>
+                    <div class="solution-content">
+                        <strong>Wildlife Crossing & Eco-bridge</strong>
+                        Bangun jembatan ekologi untuk menghubungkan habitat yang terpisah oleh jalan raya. Terowongan untuk satwa kecil dan reptil.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">🌳</span>
+                    <div class="solution-content">
+                        <strong>Rehabilitasi Mangrove sebagai Nursery Ground</strong>
+                        Restorasi 10.000 ha mangrove Demak untuk memulihkan nursery ground perikanan. Silvofishery sebagai model win-win tambak-konservasi.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">🛡️</span>
+                    <div class="solution-content">
+                        <strong>Perlindungan Habitat Spesies Flagship</strong>
+                        Status perlindungan ketat untuk habitat Elang Jawa (Ungaran), Owa Jawa (Petungkriyono), Macan Tutul (Muria), dan kelelawar karst (Sukolilo).
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">🪸</span>
+                    <div class="solution-content">
+                        <strong>Zonasi Ketat & Patroli TN Karimunjawa</strong>
+                        Enforcement zona inti untuk maksimalkan spill-over effect. Patroli BKSDA laut untuk cegah overfishing.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">📊</span>
+                    <div class="solution-content">
+                        <strong>Monitoring Populasi & Corridor Function</strong>
+                        Camera trap di koridor, acoustic monitoring kelelawar, bird banding untuk migratori. Data untuk evaluasi efektivitas koridor.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">👥</span>
+                    <div class="solution-content">
+                        <strong>Edukasi & Community-based Conservation</strong>
+                        Libatkan masyarakat dalam patroli, monitoring, dan ekowisata. Payment for Ecosystem Services (PES) untuk insentif konservasi.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">⚖️</span>
+                    <div class="solution-content">
+                        <strong>Regulasi AMDAL Ketat untuk Pembangunan di Koridor</strong>
+                        Setiap pembangunan di/dekat koridor ekologi wajib AMDAL dengan Wildlife Impact Assessment. Tolak izin yang memotong koridor.
+                    </div>
+                </li>
+            </ul>
+
+            <div style="margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.25); border-radius: 12px; border: 2px solid white;">
+                <p style="font-size: 17px; font-weight: 600; line-height: 1.8;">
+                    🌿 <strong>VISI:</strong> Membangun <strong>Green Infrastructure Network</strong> dari ridge hingga reef yang menjamin 
+                    konektivitas ekologi, melindungi biodiversitas, dan mempertahankan jasa ekosistem bernilai <strong>triliunan rupiah</strong>!
+                </p>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="downloadReport()">
+                <span>📥</span> Download Laporan Lengkap
+            </button>
+            <button class="btn btn-secondary" onclick="shareInfographic()">
+                <span>📤</span> Bagikan Infografis
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function downloadReport() {
+            alert('📥 Fitur download PDF akan segera tersedia!\n\nReport akan berisi:\n• Analisis 8 Spesies Flagship\n• Peta Koridor Ekologi\n• 6 Ecosystem Services\n• Cascade Effect Model\n• 8 Solusi Konservasi\n• Wildlife Impact Assessment');
+        }
+
+        function shareInfographic() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Konektivitas Biologis Ridge to Reef',
+                    text: 'Jaringan Ekologi Terintegrasi: Melindungi Koridor = Melindungi Kehidupan',
+                    url: window.location.href
+                });
+            } else {
+                alert('📤 Link berhasil disalin!\n\nBagikan infografis ini untuk awareness pentingnya koridor ekologi dan sempadan sungai sebagai "jalan tol" satwa!');
+            }
+        }
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.flow-path, .flagship-section, .services-section, .corridor-section, .threat-section, .cascade-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Interactive journey steps
+        document.querySelectorAll('.journey-step').forEach(step => {
+            step.addEventListener('click', function() {
+                const label = this.querySelector('.journey-label').textContent;
+                const info = {
+                    'HABITAT HULU': 'Hutan lindung dan cagar alam di gunung (Ungaran, Muria) sebagai habitat spesies flagship: Elang Jawa, Macan Tutul, Owa Jawa. Keanekaragaman hayati tinggi.',
+                    'KORIDOR SEMPADAN SUNGAI': 'Satu-satunya jalur hijau yang menghubungkan habitat hulu dan hilir di tengah lanskap urban. Kritis untuk pergerakan satwa dan burung air.',
+                    'MANGROVE PESISIR': 'Nursery ground untuk rajungan, udang, ikan. Habitat kelelawar karst dan burung air. Blue carbon sink dan proteksi pantai.',
+                    'TERUMBU KARANG LAUT': 'Habitat ikan karang dengan spill-over effect ke zona tangkap. Tutupan 41-76% (sehat) di zona inti Karimunjawa.'
+                };
+                alert(`ℹ️ ${label}\n\n${info[label] || 'Informasi detail'}`);
+            });
+        });
+    </script>
+</body>
+</html>
