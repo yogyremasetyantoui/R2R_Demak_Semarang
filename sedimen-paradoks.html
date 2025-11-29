@@ -171,6 +171,80 @@
             font-size: 20px;
         }
 
+        /* Dual System Info Box */
+        .dual-system-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .dual-system-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #1e293b;
+        }
+
+        .system-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .system-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 25px;
+            border: 2px solid #cbd5e1;
+        }
+
+        .system-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #cbd5e1;
+        }
+
+        .system-number {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .system-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .system-detail {
+            margin: 12px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .system-detail strong {
+            color: #1e40af;
+            display: block;
+            margin-bottom: 5px;
+        }
+
         /* Solution Bridge */
         .solution-bridge {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
@@ -225,6 +299,16 @@
         .comparison-header p {
             color: #64748b;
             font-size: 16px;
+        }
+
+        .comparison-subtitle {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 15px 25px;
+            border-radius: 12px;
+            border-left: 4px solid #f59e0b;
+            margin: 20px 0;
+            font-size: 15px;
+            color: #78350f;
         }
 
         .slider-container {
@@ -543,7 +627,8 @@
         /* Responsive */
         @media (max-width: 1024px) {
             .paradox-container,
-            .flow-diagram {
+            .flow-diagram,
+            .system-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -577,6 +662,78 @@
         <div class="hero-section">
             <h1>🏔️ PARADOKS SEDIMEN 🌊</h1>
             <p class="subtitle">Kelebihan vs Kekurangan: Dua Krisis Sedimen di Satu Wilayah</p>
+        </div>
+
+        <!-- Dual System Explanation -->
+        <div class="dual-system-box">
+            <div class="dual-system-title">💧 Dua Sistem DAS yang Berbeda</div>
+            <p style="text-align: center; color: #64748b; margin-bottom: 30px;">
+                Wilayah Semarang-Demak memiliki 2 sistem sungai utama dengan karakteristik berbeda yang sama-sama mengalami gangguan sedimen
+            </p>
+
+            <div class="system-grid">
+                <!-- Sistem 1: Sungai Tuntang -->
+                <div class="system-card">
+                    <div class="system-header">
+                        <div class="system-number">1</div>
+                        <div class="system-name">Sistem Sungai Tuntang</div>
+                    </div>
+
+                    <div class="system-detail">
+                        <strong>🏔️ Sumber Air:</strong>
+                        Gunung Ungaran
+                    </div>
+
+                    <div class="system-detail">
+                        <strong>🛑 Intervensi:</strong>
+                        Dibendung beberapa kali untuk irigasi pertanian intensif
+                    </div>
+
+                    <div class="system-detail">
+                        <strong>📍 Muara:</strong>
+                        Pesisir Demak
+                    </div>
+
+                    <div class="system-detail" style="background: #fef2f2; border-left: 3px solid #dc2626;">
+                        <strong style="color: #991b1b;">⚠️ Masalah:</strong>
+                        Sedimen tertahan di bendung-bendung → Muara defisit sedimen → Pantai Demak tergerus
+                    </div>
+                </div>
+
+                <!-- Sistem 2: Kali Serang -->
+                <div class="system-card">
+                    <div class="system-header">
+                        <div class="system-number">2</div>
+                        <div class="system-name">Sistem Kali Serang</div>
+                    </div>
+
+                    <div class="system-detail">
+                        <strong>🏔️ Sumber Air:</strong>
+                        Gunung Telomulyo + Kaki Gunung Merbabu
+                    </div>
+
+                    <div class="system-detail">
+                        <strong>🛑 Intervensi:</strong>
+                        Waduk Kedung Ombo (bendungan besar untuk irigasi masif)
+                    </div>
+
+                    <div class="system-detail">
+                        <strong>📍 Muara:</strong>
+                        Bergabung dengan sistem Tuntang ke Pesisir Demak
+                    </div>
+
+                    <div class="system-detail" style="background: #fef2f2; border-left: 3px solid #dc2626;">
+                        <strong style="color: #991b1b;">⚠️ Masalah:</strong>
+                        Sedimen tertahan masif di Waduk → Pendangkalan waduk cepat → Sungai hilir kehilangan sedimen
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; text-align: center; border: 2px solid #f59e0b;">
+                <strong style="color: #78350f; font-size: 16px;">
+                    🔄 Kesamaan Masalah: Kedua sistem mengalami SEDIMENT STARVATION akibat pertanian intensif dengan pembendungan yang menahan sedimen tidak sampai ke muara
+                </strong>
+            </div>
         </div>
 
         <!-- Split Screen Paradox -->
@@ -661,7 +818,11 @@
 
                 <div style="margin-top: 25px; padding: 15px; background: #eff6ff; border-radius: 8px; border-left: 4px solid #2563eb;">
                     <strong style="color: #1e40af;">Penyebab: Sediment Starvation</strong>
-                    <p style="color: #64748b; margin-top: 8px; font-size: 14px;">Waduk Kedung Ombo menahan sedimen → Sungai Tuntang defisit sedimen → Pantai tidak ada material pengganti</p>
+                    <p style="color: #64748b; margin-top: 8px; font-size: 14px;">
+                        <strong>Sungai Tuntang:</strong> Dibendung berkali-kali untuk irigasi<br>
+                        <strong>Kali Serang:</strong> Waduk Kedung Ombo menahan sedimen masif<br>
+                        <strong>Hasil:</strong> Muara tidak mendapat supply sedimen → Pantai tergerus
+                    </p>
                 </div>
             </div>
         </div>
@@ -679,7 +840,12 @@
         <div class="comparison-section">
             <div class="comparison-header">
                 <h2>⏳ Fenomena Sediment Starvation</h2>
-                <p>Geser slider untuk melihat perubahan sistem DAS sebelum dan setelah Waduk Kedung Ombo</p>
+                <p>Geser slider untuk melihat perubahan sistem DAS Kali Serang</p>
+            </div>
+
+            <div class="comparison-subtitle">
+                <strong>📌 Fokus Analisis:</strong> Sistem Kali Serang (Gunung Telomulyo + Kaki Merbabu → Waduk Kedung Ombo)
+                <br><em>Catatan: Sistem Sungai Tuntang (Gunung Ungaran) juga mengalami masalah serupa dengan bendung-bendung irigasi</em>
             </div>
 
             <div class="slider-container">
@@ -696,23 +862,23 @@
                     <div class="flow-title before">SEBELUM Waduk Kedung Ombo</div>
                     
                     <div class="flow-step success">
-                        <div class="flow-step-title">⛰️ Erosi Lereng Merbabu</div>
-                        <div class="flow-step-desc">Material tanah dan batuan tererosi secara alami</div>
+                        <div class="flow-step-title">⛰️ Erosi Lereng</div>
+                        <div class="flow-step-desc">G. Telomulyo + Kaki G. Merbabu: Material tanah tererosi secara alami</div>
                     </div>
 
                     <div class="flow-step success">
-                        <div class="flow-step-title">🌊 Sungai Mengangkut Sedimen</div>
-                        <div class="flow-step-desc">Sedimen terbawa aliran sungai ke hilir</div>
+                        <div class="flow-step-title">🌊 Kali Serang Mengangkut Sedimen</div>
+                        <div class="flow-step-desc">Sedimen terbawa aliran sungai ke hilir dengan natural flow</div>
                     </div>
 
                     <div class="flow-step success">
                         <div class="flow-step-title">🏖️ Muara & Delta</div>
-                        <div class="flow-step-desc">Sedimen terendapkan di muara membentuk delta</div>
+                        <div class="flow-step-desc">Sedimen terendapkan di muara membentuk delta di Pesisir Demak</div>
                     </div>
 
                     <div class="flow-step success">
                         <div class="flow-step-title">✅ Pantai Tereklamasi <span class="icon-badge badge-success">Normal</span></div>
-                        <div class="flow-step-desc">Proses geologis alamiah mengisi dan mereklamasi pantai Demak</div>
+                        <div class="flow-step-desc">Proses geologis alamiah mengisi dan mereklamasi pantai secara berkelanjutan</div>
                     </div>
                 </div>
 
@@ -721,30 +887,38 @@
                     <div class="flow-title after">SETELAH Waduk Kedung Ombo</div>
                     
                     <div class="flow-step warning">
-                        <div class="flow-step-title">⛰️ Erosi Lereng Merbabu</div>
-                        <div class="flow-step-desc">Material tanah tetap tererosi</div>
+                        <div class="flow-step-title">⛰️ Erosi Lereng</div>
+                        <div class="flow-step-desc">G. Telomulyo + Kaki G. Merbabu: Material tanah tetap tererosi</div>
                     </div>
 
                     <div class="flow-step danger">
-                        <div class="flow-step-title">🛑 Waduk Menahan Sedimen</div>
-                        <div class="flow-step-desc">Sedimen tertahan dan mengendap di waduk, bukan ke sungai</div>
+                        <div class="flow-step-title">🛑 Waduk Menahan Sedimen Masif</div>
+                        <div class="flow-step-desc">Sedimen tertahan dan mengendap di waduk → Pendangkalan waduk cepat → Umur waduk menyusut</div>
                     </div>
 
                     <div class="flow-step warning">
-                        <div class="flow-step-title">💧 Air Bersih Tanpa Sedimen</div>
-                        <div class="flow-step-desc">Air keluar dari waduk untuk irigasi, sedimen mengendap di sawah</div>
+                        <div class="flow-step-title">💧 Air Bersih untuk Irigasi Intensif</div>
+                        <div class="flow-step-desc">Air keluar dari waduk untuk pertanian, sedimen mengendap di saluran irigasi dan sawah (bukan sungai)</div>
                     </div>
 
                     <div class="flow-step danger">
-                        <div class="flow-step-title">📉 Sungai Kehilangan Sediment Budget</div>
-                        <div class="flow-step-desc">Sungai Tuntang defisit sedimen, muara tidak ada material</div>
+                        <div class="flow-step-title">📉 Sungai Hilir Kehilangan Sediment Budget</div>
+                        <div class="flow-step-desc">Suspended sediment &lt;20% dari kondisi pra-waduk, muara tidak mendapat material</div>
                     </div>
 
                     <div class="flow-step danger">
                         <div class="flow-step-title">❌ Pantai Tergerus <span class="icon-badge badge-danger">Krisis</span></div>
-                        <div class="flow-step-desc">Coastal erosion hebat, tidak ada material pengganti dari sungai</div>
+                        <div class="flow-step-desc">Coastal erosion hebat, tidak ada supply sedimen dari sungai, garis pantai mundur ratusan meter</div>
                     </div>
                 </div>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: #fffbeb; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                <strong style="color: #92400e;">⚡ Catatan Penting:</strong>
+                <p style="color: #78350f; margin-top: 10px; line-height: 1.7;">
+                    <strong>Sistem Sungai Tuntang</strong> (Gunung Ungaran) mengalami fenomena serupa dengan bendung-bendung irigasi kecil yang tersebar di sepanjang aliran. 
+                    Meskipun skalanya lebih kecil dari Waduk Kedung Ombo, efek kumulatif dari multiple bendungan sama-sama menyebabkan defisit sedimen di muara Pesisir Demak.
+                </p>
             </div>
         </div>
 
@@ -759,7 +933,7 @@
                     </div>
                     <div class="bar bar-deficit" style="height: 15%;">
                         <div class="bar-value">&lt;20% pra-waduk</div>
-                        <div class="bar-label">Sungai Tuntang<br>(Defisit)</div>
+                        <div class="bar-label">Sungai Hilir<br>(Defisit)</div>
                     </div>
                     <div class="bar" style="height: 60%; background: linear-gradient(180deg, #f59e0b 0%, #fbbf24 100%);">
                         <div class="bar-value">Ratusan M</div>
@@ -785,10 +959,12 @@
             <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 12px; border: 2px solid #dc2626;">
                 <h3 style="color: #991b1b; margin-bottom: 15px; text-align: center;">📢 KESIMPULAN KRITIS</h3>
                 <p style="color: #1e293b; font-size: 16px; line-height: 1.8; text-align: center;">
-                    Wilayah Semarang-Demak menghadapi <strong>paradoks sedimen ganda</strong>: 
-                    Pelabuhan Tanjung Emas <strong>kelebihan</strong> sedimen (+1.200 mm/tahun) 
-                    sementara Pesisir Demak <strong>kekurangan</strong> sedimen (garis pantai mundur ratusan meter).
+                    Wilayah Semarang-Demak menghadapi <strong>paradoks sedimen ganda</strong> yang diperparah oleh <strong>dua sistem DAS berbeda</strong>:
                 </p>
+                <ul style="margin: 20px 0; color: #1e293b; line-height: 2;">
+                    <li><strong>Sistem 1 (Ungaran):</strong> Pelabuhan Tanjung Emas <strong>kelebihan</strong> sedimen (+1.200 mm/tahun)</li>
+                    <li><strong>Sistem 2 (Tuntang & Kali Serang):</strong> Pesisir Demak <strong>kekurangan</strong> sedimen (garis pantai mundur ratusan meter) akibat pembendungan masif untuk pertanian intensif</li>
+                </ul>
             </div>
         </div>
 
@@ -812,17 +988,15 @@
             const value = this.value;
             
             if (value < 50) {
-                // Show Before state
                 flowDiagram.style.transform = 'translateX(0)';
             } else {
-                // Show After state (subtle visual change)
                 flowDiagram.style.transform = 'translateX(-5px)';
             }
         });
 
         // Download Report
         function downloadReport() {
-            alert('📥 Fitur download PDF akan segera tersedia!\n\nReport akan berisi:\n• Analisis lengkap Paradoks Sedimen\n• Data visualisasi\n• Rekomendasi solusi');
+            alert('📥 Fitur download PDF akan segera tersedia!\n\nReport akan berisi:\n• Analisis lengkap 2 Sistem DAS\n• Paradoks Sedimen\n• Data visualisasi\n• Rekomendasi solusi');
         }
 
         // Share Infographic
@@ -853,7 +1027,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.paradox-card, .comparison-section, .cascade-section').forEach(el => {
+        document.querySelectorAll('.paradox-card, .comparison-section, .cascade-section, .dual-system-box').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease-out';
