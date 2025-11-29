@@ -152,6 +152,143 @@
             color: #94a3b8;
         }
 
+        /* Featured Matrix Section */
+        .featured-section {
+            margin: 60px 0;
+        }
+
+        .featured-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .featured-header h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ec4899, #f59e0b, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .featured-header p {
+            font-size: 18px;
+            color: #94a3b8;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(245, 158, 11, 0.1) 50%, rgba(16, 185, 129, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 50px;
+            border: 3px solid;
+            border-image: linear-gradient(135deg, #ec4899, #f59e0b, #10b981) 1;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(255,255,255,0.15));
+            transition: all 0.4s;
+        }
+
+        .featured-card:hover::before {
+            top: 0;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 80px rgba(236, 72, 153, 0.4);
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .featured-icon {
+            font-size: 120px;
+            filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.5));
+        }
+
+        .featured-text {
+            flex: 1;
+        }
+
+        .featured-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .featured-desc {
+            font-size: 18px;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .featured-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .featured-highlight-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .featured-highlight-item .icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .featured-highlight-item .label {
+            font-size: 14px;
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        .featured-button {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #ec4899, #f59e0b);
+            color: white;
+            border: none;
+        }
+
+        .featured-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+        }
+
         /* Main Navigation Grid */
         .nav-section {
             margin: 60px 0;
@@ -259,15 +396,6 @@
             box-shadow: 0 20px 60px rgba(245, 158, 11, 0.3);
         }
 
-        .nav-card.matrix {
-            border-color: #ec4899;
-        }
-
-        .nav-card.matrix:hover {
-            background: rgba(236, 72, 153, 0.1);
-            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.3);
-        }
-
         .card-icon {
             font-size: 64px;
             margin-bottom: 20px;
@@ -365,14 +493,6 @@
             background: #f59e0b;
         }
 
-        .nav-card.matrix .card-button {
-            border-color: #ec4899;
-        }
-
-        .nav-card.matrix .card-button:hover {
-            background: #ec4899;
-        }
-
         /* Footer */
         .footer {
             text-align: center;
@@ -417,6 +537,15 @@
             .nav-grid {
                 grid-template-columns: 1fr;
             }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .featured-highlights {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -430,6 +559,14 @@
 
             .stats-bar {
                 grid-template-columns: 1fr;
+            }
+
+            .featured-icon {
+                font-size: 80px;
+            }
+
+            .featured-title {
+                font-size: 28px;
             }
         }
 
@@ -496,10 +633,49 @@
             </div>
         </div>
 
+        <!-- Featured: Matrix RTRW -->
+        <div class="featured-section fade-in">
+            <div class="featured-header">
+                <h2>📍 Peta Terpadu</h2>
+                <p>Visualisasi Spasial: Pola Ruang, Lokasi Ridge to Reef & Kontribusi terhadap SDGs</p>
+            </div>
+
+            <a href="R2RMatrixRTRW_P.html" class="featured-card">
+                <div class="featured-content">
+                    <div class="featured-icon">🗺️</div>
+                    <div class="featured-text">
+                        <div class="featured-title">Atlas Ridge to Reef</div>
+                        <div class="featured-desc">
+                            Matriks integrasi komprehensif yang menggabungkan <strong>Pola Ruang RTRW</strong> Semarang-Demak, 
+                            <strong>Lokasi Kritis Ridge to Reef</strong>, dan <strong>Keterkaitan dengan Target SDGs</strong> 
+                            untuk perencanaan pembangunan berkelanjutan.
+                        </div>
+
+                        <div class="featured-highlights">
+                            <div class="featured-highlight-item">
+                                <div class="icon">🏞️</div>
+                                <div class="label">Pola Ruang RTRW</div>
+                            </div>
+                            <div class="featured-highlight-item">
+                                <div class="icon">📍</div>
+                                <div class="label">Lokasi R2R Kritis</div>
+                            </div>
+                            <div class="featured-highlight-item">
+                                <div class="icon">🎯</div>
+                                <div class="label">Kontribusi SDGs</div>
+                            </div>
+                        </div>
+
+                        <span class="featured-button">Buka Peta Terpadu →</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
         <!-- Main Navigation -->
         <div class="nav-section">
             <div class="section-header fade-in">
-                <h2>Eksplorasi 6 Konektivitas Kritis</h2>
+                <h2>Eksplorasi 5 Konektivitas Kritis</h2>
                 <p>Pilih salah satu konektivitas untuk melihat analisis mendalam</p>
             </div>
 
@@ -593,24 +769,6 @@
                     </div>
                     <span class="card-button">Lihat Detail →</span>
                 </a>
-
-                <!-- Card 6: Matrix RTRW -->
-                <a href="R2RMatrixRTRW_P.html" class="nav-card matrix fade-in">
-                    <div class="card-icon">🗺️</div>
-                    <div class="card-title">Matrix RTRW & Policy</div>
-                    <div class="card-desc">
-                        Matriks integrasi Ridge to Reef dengan Rencana Tata Ruang Wilayah dan rekomendasi kebijakan.
-                    </div>
-                    <div class="card-highlights">
-                        <ul>
-                            <li>Integrasi R2R dengan RTRW Semarang-Demak</li>
-                            <li>Analisis conflict dan synergy antar zona</li>
-                            <li>Rekomendasi policy untuk perlindungan koridor</li>
-                            <li>Framework implementasi terpadu</li>
-                        </ul>
-                    </div>
-                    <span class="card-button">Lihat Detail →</span>
-                </a>
             </div>
         </div>
 
@@ -619,12 +777,12 @@
             <p><strong>Ridge to Reef</strong> - Sistem Konektivitas Ekosistem Terintegrasi</p>
             <p style="font-size: 14px;">Kawasan Semarang - Demak, Jawa Tengah, Indonesia</p>
             <div class="footer-links">
+                <a href="R2RMatrixRTRW_P.html">Peta Terpadu</a>
                 <a href="Konektivitas-Hidrologi.html">Hidrologi</a>
                 <a href="Konektivitas-Sedimen.html">Sedimen</a>
                 <a href="Konektivitas-Carbon.html">Karbon</a>
                 <a href="Konektivitas-Biologi.html">Biologis</a>
                 <a href="Konektivitas-Ekonomi.html">Ekonomi</a>
-                <a href="R2RMatrixRTRW_P.html">Matrix RTRW</a>
             </div>
             <p style="margin-top: 30px; font-size: 12px; color: #475569;">
                 © 2025 Ridge to Reef Initiative. Semua data dan analisis untuk tujuan edukasi dan advokasi konservasi.
@@ -660,6 +818,16 @@
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+
+        // Featured card hover
+        const featuredCard = document.querySelector('.featured-card');
+        featuredCard.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.01)';
+        });
+        
+        featuredCard.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
         });
     </script>
 </body>
