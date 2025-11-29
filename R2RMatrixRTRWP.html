@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matriks Integrasi Pola Ruang RTRW & 17 SDGs</title>
+    <title>Integrasi Pola Ruang RTRW Provinsi dengan 17 SDGs</title>
     <style>
         * {
             margin: 0;
@@ -83,61 +83,20 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
-
-        /* Featured Image Section */
-        .featured-image-section {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        .featured-image-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1e3a8a;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .featured-image-subtitle {
-            font-size: 16px;
-            color: #475569;
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-
-        .featured-image-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .featured-image-container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 60px rgba(0,0,0,0.3);
-        }
-
-        .featured-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .featured-image-caption {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #64748b;
-            font-style: italic;
-        }
         
         .content {
             padding: 30px;
             overflow-x: auto;
+        }
+
+        .matrix-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .matrix-container {
@@ -255,6 +214,128 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
+        }
+
+        /* Featured Image Section - Moved Below Matrix */
+        .featured-image-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .featured-image-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .featured-image-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .featured-image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 60px rgba(0,0,0,0.3);
+        }
+
+        .featured-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .featured-image-caption {
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* Zone Buttons */
+        .zone-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .zone-button {
+            padding: 20px 15px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+            line-height: 1.4;
+        }
+
+        .zone-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .zone-button.zone-1 {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            color: white;
+        }
+
+        .zone-button.zone-2 {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #78350f;
+            border: 2px solid #f59e0b;
+        }
+
+        .zone-button.zone-3 {
+            background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+            color: #581c87;
+            border: 2px solid #a855f7;
+        }
+
+        .zone-button.zone-4 {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+        }
+
+        .zone-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .zone-name {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Responsive for Zone Buttons */
+        @media (max-width: 768px) {
+            .zone-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .zone-buttons {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Modal Styles */
@@ -544,8 +625,9 @@
 </head>
 <body>
     <div class="container">
+        <!-- Header + SDG Icons -->
         <div class="header">
-            <h1>Matriks Integrasi Pola Ruang RTRW & 17 SDGs</h1>
+            <h1>Integrasi Pola Ruang RTRW Provinsi dengan 17 SDGs</h1>
             <div class="sdg-icons">
                 <div class="sdg-icon" data-sdg="1"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sustainable_Development_Goal_01NoPoverty.svg/500px-Sustainable_Development_Goal_01NoPoverty.svg.png" alt="SDG 1"></div>
                 <div class="sdg-icon" data-sdg="2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Sustainable_Development_Goal_02ZeroHunger.svg/500px-Sustainable_Development_Goal_02ZeroHunger.svg.png" alt="SDG 2"></div>
@@ -566,20 +648,11 @@
                 <div class="sdg-icon" data-sdg="17"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sustainable_Development_Goal_17Partnerships.svg/500px-Sustainable_Development_Goal_17Partnerships.svg.png" alt="SDG 17"></div>
             </div>
         </div>
-
-        <!-- Featured Image Section (NEW) -->
-        <div class="featured-image-section">
-            <div class="featured-image-title">Peta Catchment Area Ridge to Reef</div>
-            <div class="featured-image-subtitle">Wilayah Semarang - Demak</div>
-            <div class="featured-image-container" onclick="openImageModal()">
-                <img src="https://raw.githubusercontent.com/yogyremasetyantoui/R2R_Demak_Semarang/refs/heads/main/images/CatchmentMapYogy.jpg" 
-                     alt="Peta Catchment Area Ridge to Reef Semarang-Demak"
-                     id="featuredImage">
-            </div>
-            <div class="featured-image-caption">Klik gambar untuk memperbesar</div>
-        </div>
         
+        <!-- Matriks Tabel -->
         <div class="content">
+            <div class="matrix-title">Matriks Integrasi Pola Ruang RTRW & 17 SDGs</div>
+            
             <div class="matrix-container">
                 <div class="section-header">KAWASAN LINDUNG</div>
                 <table>
@@ -685,6 +758,37 @@
                 </div>
             </div>
         </div>
+
+        <!-- Featured Image Section (MOVED HERE - Below Matrix) -->
+        <div class="featured-image-section">
+            <div class="featured-image-title">Zonasi Ridge to Reef</div>
+            <div class="featured-image-container" onclick="openImageModal()">
+                <img src="https://raw.githubusercontent.com/yogyremasetyantoui/R2R_Demak_Semarang/refs/heads/main/images/CatchmentMapYogy.jpg" 
+                     alt="Zonasi Ridge to Reef Semarang-Demak"
+                     id="featuredImage">
+            </div>
+            <div class="featured-image-caption">Klik gambar untuk memperbesar</div>
+
+            <!-- Zone Buttons (NEW) -->
+            <div class="zone-buttons">
+                <button class="zone-button zone-1">
+                    <span class="zone-label">ZONE 1</span>
+                    <span class="zone-name">HULU / RIDGE<br>(Upstream)</span>
+                </button>
+                <button class="zone-button zone-2">
+                    <span class="zone-label">ZONE 2</span>
+                    <span class="zone-name">MID-STREAM<br>(Transition Zone)</span>
+                </button>
+                <button class="zone-button zone-3">
+                    <span class="zone-label">ZONE 3</span>
+                    <span class="zone-name">PESISIR / COASTAL<br>(Mid-Downstream)</span>
+                </button>
+                <button class="zone-button zone-4">
+                    <span class="zone-label">ZONE 4</span>
+                    <span class="zone-name">LAUT / REEF<br>(Marine)</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Modal Popup untuk Kawasan -->
@@ -719,7 +823,7 @@
         </div>
     </div>
 
-    <!-- Image Modal for Featured Image (NEW) -->
+    <!-- Image Modal for Featured Image -->
     <div id="imageModal" class="image-modal">
         <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
         <img class="image-modal-content" id="imageModalContent">
@@ -729,14 +833,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     
     <script>
-        // Published CSV URLs
         const KAWASAN_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?gid=230507739&single=true&output=csv';
         const SDG_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?gid=172114157&single=true&output=csv';
         
         let kawasanData = [];
         let sdgData = [];
 
-        // Load data from Kawasan Google Sheets
         function loadKawasanData() {
             Papa.parse(KAWASAN_SHEET_URL, {
                 download: true,
@@ -752,7 +854,6 @@
             });
         }
 
-        // Load data from SDG Google Sheets
         function loadSDGData() {
             Papa.parse(SDG_SHEET_URL, {
                 download: true,
@@ -769,7 +870,6 @@
             });
         }
 
-        // Update SDG icons based on data availability
         function updateSDGIcons() {
             const sdgIcons = document.querySelectorAll('.sdg-icon');
             sdgIcons.forEach(icon => {
@@ -789,7 +889,6 @@
             });
         }
 
-        // Get modal elements
         const kawasanModal = document.getElementById('infoModal');
         const kawasanModalBody = document.getElementById('modalBody');
         const modalKawasan = document.getElementById('modalKawasan');
@@ -803,7 +902,6 @@
         const imageModal = document.getElementById('imageModal');
         const imageModalContent = document.getElementById('imageModalContent');
 
-        // Close modals
         function closeKawasanModal() {
             kawasanModal.style.display = 'none';
         }
@@ -812,7 +910,6 @@
             sdgModal.style.display = 'none';
         }
 
-        // Image modal functions (NEW)
         function openImageModal() {
             const img = document.getElementById('featuredImage');
             imageModal.style.display = 'block';
@@ -823,7 +920,6 @@
             imageModal.style.display = 'none';
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == kawasanModal) {
                 closeKawasanModal();
@@ -836,7 +932,6 @@
             }
         }
 
-        // Show Kawasan modal with data
         function showKawasanModal(kawasan, sdg) {
             kawasanModal.style.display = 'block';
             modalKawasan.textContent = kawasan;
@@ -891,7 +986,6 @@
             }
         }
 
-        // Show SDG modal with MULTIPLE ROWS support & AUTO DEDUPLICATE
         function showSDGModal(sdgNumber) {
             const filteredData = sdgData.filter(row => {
                 const rowSDG = (row.SDG || '').toString().trim();
