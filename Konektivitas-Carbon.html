@@ -505,6 +505,38 @@
             background: #f0fdf4;
         }
 
+        /* Back to Home Navigation */
+        .back-to-home {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .back-to-home-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
+            transition: all 0.3s;
+        }
+
+        .back-to-home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(14, 165, 233, 0.6);
+        }
+
+        .back-to-home-btn .icon {
+            font-size: 20px;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .storage-grid {
@@ -530,6 +562,16 @@
             }
             .karst-process {
                 grid-template-columns: 1fr;
+            }
+            
+            .back-to-home {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .back-to-home-btn {
+                padding: 12px 20px;
+                font-size: 14px;
             }
         }
     </style>
@@ -847,6 +889,14 @@
                 <span>📤</span> Bagikan Infografis
             </button>
         </div>
+    </div>
+
+    <!-- Back to Home Button -->
+    <div class="back-to-home">
+        <a href="index.html" class="back-to-home-btn">
+            <span class="icon">🏠</span>
+            <span>Kembali ke Beranda</span>
+        </a>
     </div>
 
     <script>
