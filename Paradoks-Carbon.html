@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konektivitas Karbon: Ridge to Reef</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+            padding: 20px;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
+        }
+
+        .hero-section h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-section .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Carbon Flow Path */
+        .flow-path {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .flow-path-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #065f46;
+        }
+
+        .carbon-journey {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 20px 0;
+            overflow-x: auto;
+        }
+
+        .journey-step {
+            flex: 1;
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 3px solid #10b981;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-width: 180px;
+        }
+
+        .journey-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.3);
+        }
+
+        .journey-icon {
+            font-size: 56px;
+            margin-bottom: 12px;
+        }
+
+        .journey-label {
+            font-weight: 700;
+            font-size: 16px;
+            color: #065f46;
+            margin-bottom: 8px;
+        }
+
+        .journey-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #047857;
+            margin-bottom: 5px;
+        }
+
+        .journey-desc {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .flow-arrow {
+            font-size: 36px;
+            color: #10b981;
+            animation: flowAnimation 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes flowAnimation {
+            0%, 100% { transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(10px); opacity: 0.5; }
+        }
+
+        /* Total Budget Box */
+        .total-budget {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.4);
+        }
+
+        .total-budget h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .budget-number {
+            font-size: 72px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .budget-subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            margin-top: 15px;
+        }
+
+        .budget-comparison {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+            font-size: 18px;
+        }
+
+        /* Carbon Storage Grid */
+        .storage-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .storage-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #065f46;
+        }
+
+        .storage-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+        }
+
+        .storage-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #10b981;
+            transition: all 0.3s;
+        }
+
+        .storage-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.2);
+        }
+
+        .storage-icon {
+            font-size: 56px;
+            margin-bottom: 15px;
+        }
+
+        .storage-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #065f46;
+            margin-bottom: 12px;
+        }
+
+        .storage-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #047857;
+            margin-bottom: 8px;
+        }
+
+        .storage-unit {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .storage-desc {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        /* Unique Feature Box */
+        .unique-feature {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .unique-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #b45309;
+        }
+
+        .karst-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 16px;
+            padding: 30px;
+            border: 3px solid #f59e0b;
+            margin-bottom: 30px;
+        }
+
+        .karst-highlight h3 {
+            font-size: 24px;
+            color: #78350f;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .karst-process {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .process-step {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .process-step-num {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            line-height: 32px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .process-step-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .process-step-desc {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Threat Section */
+        .threat-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+        }
+
+        .threat-title {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #dc2626;
+        }
+
+        .threat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .threat-card {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-radius: 16px;
+            padding: 30px;
+            border-left: 5px solid #dc2626;
+            transition: all 0.3s;
+        }
+
+        .threat-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.2);
+        }
+
+        .threat-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #dc2626;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .threat-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #991b1b;
+            margin-bottom: 15px;
+        }
+
+        .threat-impact {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .threat-evidence {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #64748b;
+            border-left: 3px solid #f59e0b;
+        }
+
+        /* Policy Implication */
+        .policy-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #1e293b;
+            border: 3px solid #f59e0b;
+        }
+
+        .policy-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #78350f;
+        }
+
+        .policy-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .policy-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f59e0b;
+            margin-top: 20px;
+        }
+
+        .policy-highlight strong {
+            color: #92400e;
+        }
+
+        /* Solution Box */
+        .solution-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.4);
+        }
+
+        .solution-box h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin-top: 25px;
+            text-align: left;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .solution-list li {
+            background: rgba(255,255,255,0.2);
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            line-height: 1.7;
+        }
+
+        .solution-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .solution-content {
+            flex: 1;
+        }
+
+        .solution-content strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #10b981;
+            border: 2px solid #10b981;
+        }
+
+        .btn-secondary:hover {
+            background: #f0fdf4;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .storage-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .threat-grid {
+                grid-template-columns: 1fr;
+            }
+            .karst-process {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .storage-grid {
+                grid-template-columns: 1fr;
+            }
+            .carbon-journey {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+            .karst-process {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>🌳 KONEKTIVITAS KARBON</h1>
+            <p class="subtitle">Sistem Penyerapan dan Penyimpanan Karbon Terintegrasi dari Ridge hingga Reef</p>
+        </div>
+
+        <!-- Carbon Flow Path -->
+        <div class="flow-path">
+            <div class="flow-path-title">🔄 Alur Lengkap Konektivitas Karbon</div>
+            <div class="carbon-journey">
+                <div class="journey-step">
+                    <div class="journey-icon">⛰️</div>
+                    <div class="journey-label">KARST</div>
+                    <div class="journey-value">787 ton</div>
+                    <div class="journey-desc">C/km²/tahun via karstifikasi (karbon anorganik)</div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">🌲</div>
+                    <div class="journey-label">HUTAN LINDUNG</div>
+                    <div class="journey-value">135 ton</div>
+                    <div class="journey-desc">C/ha biomassa pohon</div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">🌳</div>
+                    <div class="journey-label">MANGROVE</div>
+                    <div class="journey-value">5.900+ kg</div>
+                    <div class="journey-desc">CO2eq/1,2 ha (blue carbon)</div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">🌿</div>
+                    <div class="journey-label">LAMUN</div>
+                    <div class="journey-value">3-5x</div>
+                    <div class="journey-desc">Lebih efektif dari hutan darat</div>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">🌊</div>
+                    <div class="journey-label">SEDIMEN LAUT</div>
+                    <div class="journey-value">∞</div>
+                    <div class="journey-desc">Penyimpanan jangka panjang</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Carbon Budget -->
+        <div class="total-budget">
+            <h2>💚 Total Potensi Serapan Carbon Budget Wilayah</h2>
+            <div class="budget-number">500.000+</div>
+            <div style="font-size: 28px; margin-top: -10px;">ton CO₂ per tahun</div>
+            <div class="budget-comparison">
+                <strong>Setara dengan emisi dari 100.000 kendaraan</strong><br>
+                <em>Jika seluruh ekosistem Ridge to Reef terjaga dengan baik</em>
+            </div>
+        </div>
+
+        <!-- Carbon Storage Breakdown -->
+        <div class="storage-section">
+            <div class="storage-title">📊 Detail Cadangan Karbon per Ekosistem</div>
+            <div class="storage-grid">
+                <div class="storage-card">
+                    <div class="storage-icon">⛰️</div>
+                    <div class="storage-name">Karst Kendeng</div>
+                    <div class="storage-value">787</div>
+                    <div class="storage-unit">ton C/km²/tahun</div>
+                    <div class="storage-desc">Karstifikasi: CO₂ + H₂O → Bikarbonat terkunci di air tanah</div>
+                </div>
+
+                <div class="storage-card">
+                    <div class="storage-icon">🌲</div>
+                    <div class="storage-name">Hutan Ungaran</div>
+                    <div class="storage-value">135</div>
+                    <div class="storage-unit">ton C/ha</div>
+                    <div class="storage-desc">Biomassa pohon dengan cadangan karbon tertinggi</div>
+                </div>
+
+                <div class="storage-card">
+                    <div class="storage-icon">🏙️</div>
+                    <div class="storage-name">Hutan Kota Tinjomoyo</div>
+                    <div class="storage-value">57,72</div>
+                    <div class="storage-unit">ton/ha cadangan</div>
+                    <div class="storage-desc">211,8 ton/ha serapan total (urban carbon sink)</div>
+                </div>
+
+                <div class="storage-card">
+                    <div class="storage-icon">🌳</div>
+                    <div class="storage-name">Mangrove Mangunharjo</div>
+                    <div class="storage-value">5.900+</div>
+                    <div class="storage-unit">kg CO₂eq/1,2 ha</div>
+                    <div class="storage-desc">Blue carbon dengan serapan tinggi per area</div>
+                </div>
+
+                <div class="storage-card">
+                    <div class="storage-icon">🌿</div>
+                    <div class="storage-name">Lamun Karimunjawa</div>
+                    <div class="storage-value">3-5x</div>
+                    <div class="storage-unit">vs hutan darat</div>
+                    <div class="storage-desc">Efektivitas penyerapan luar biasa tinggi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unique Feature: Karst Carbon -->
+        <div class="unique-feature">
+            <div class="unique-title">💎 FENOMENA UNIK: Karbon Karst yang Terlupakan</div>
+            
+            <div class="karst-highlight">
+                <h3>⛰️ Proses Karstifikasi: Carbon Sink yang Tidak Diperhitungkan</h3>
+                <p style="text-align: center; color: #92400e; margin: 15px 0; font-size: 15px; line-height: 1.7;">
+                    Karst Kendeng/Sukolilo menyerap karbon melalui proses <strong>karstifikasi</strong> dengan rate <strong>787 ton C/km²/tahun</strong>.<br>
+                    Ini adalah fenomena <strong>karbon biru karst (karst blue carbon)</strong> yang selama ini <strong>TIDAK masuk dalam perhitungan karbon nasional</strong>!
+                </p>
+
+                <div class="karst-process">
+                    <div class="process-step">
+                        <div class="process-step-num">1</div>
+                        <div class="process-step-title">Air Hujan + CO₂</div>
+                        <div class="process-step-desc">Air hujan bereaksi dengan CO₂ atmosfer</div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="process-step-num">2</div>
+                        <div class="process-step-title">Asam Karbonat</div>
+                        <div class="process-step-desc">Membentuk H₂CO₃ (asam karbonat lemah)</div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="process-step-num">3</div>
+                        <div class="process-step-title">Melarutkan Batu Gamping</div>
+                        <div class="process-step-desc">Asam melarutkan CaCO₃ (batu gamping)</div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="process-step-num">4</div>
+                        <div class="process-step-title">Karbon Terkunci</div>
+                        <div class="process-step-desc">Karbon tersimpan sebagai bikarbonat dalam air tanah</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; padding: 20px; background: white; border-radius: 12px; text-align: center;">
+                    <p style="color: #78350f; font-size: 15px; line-height: 1.7;">
+                        <strong>⚠️ PENTING:</strong> Proses ini berjalan selama <strong>jutaan tahun</strong> dan merupakan salah satu mekanisme penyerapan karbon jangka panjang paling stabil di alam. 
+                        Kerusakan karst = kehilangan carbon sink permanen!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Threat Section -->
+        <div class="threat-section">
+            <div class="threat-title">⚠️ 3 ANCAMAN TERPUTUSNYA KONEKTIVITAS KARBON</div>
+
+            <div class="threat-grid">
+                <div class="threat-card">
+                    <div class="threat-number">1</div>
+                    <div class="threat-name">Deforestasi Hutan Lindung</div>
+                    <div class="threat-impact">
+                        <strong>Dampak:</strong> Lepasnya stok karbon biomassa ke atmosfer → Kontribusi emisi gas rumah kaca → Perubahan iklim dipercepat
+                    </div>
+                    <div class="threat-evidence">
+                        <strong>💨 Potensi Emisi:</strong> Jika 1.000 ha hutan Ungaran hilang = 135.000 ton C terlepas = emisi 495.000 ton CO₂ = emisi 99.000 mobil selama 1 tahun!
+                    </div>
+                </div>
+
+                <div class="threat-card">
+                    <div class="threat-number">2</div>
+                    <div class="threat-name">Konversi Mangrove → Tambak</div>
+                    <div class="threat-impact">
+                        <strong>Dampak:</strong> Hilangnya blue carbon sink → Karbon tersimpan di sedimen terlepas → Pesisir kehilangan buffer alami
+                    </div>
+                    <div class="threat-evidence">
+                        <strong>📉 Data:</strong> Mangrove menyimpan 3-5x lebih banyak karbon per area dibanding hutan darat. Konversi 1 ha mangrove = kehilangan carbon sink puluhan ton per tahun.
+                    </div>
+                </div>
+
+                <div class="threat-card">
+                    <div class="threat-number">3</div>
+                    <div class="threat-name">Tambang Karst</div>
+                    <div class="threat-impact">
+                        <strong>Dampak KRITIS:</strong> Hilangnya karst carbon sink yang TIDAK PERNAH diperhitungkan dalam skema karbon nasional → Loss yang tidak terukur
+                    </div>
+                    <div class="threat-evidence">
+                        <strong>🚨 Urgensi Tinggi:</strong> Karst Kendeng 787 ton C/km²/tahun = fenomena unik yang jika rusak tidak bisa diganti. Kehilangan permanen karbon sink geologis!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Policy Implication -->
+        <div class="policy-section">
+            <div class="policy-title">📋 IMPLIKASI KEBIJAKAN: Karst Harus Masuk Skema Karbon Nasional!</div>
+            
+            <div class="policy-content">
+                <h3 style="color: #065f46; margin-bottom: 20px; font-size: 22px;">🔥 Temuan Kritis</h3>
+                
+                <p style="margin-bottom: 15px;">
+                    Selama ini, skema perdagangan karbon nasional dan internasional (termasuk REDD+, Paris Agreement, dan Carbon Trading) 
+                    <strong>HANYA memperhitungkan karbon dari hutan</strong> (biomassa pohon).
+                </p>
+
+                <p style="margin-bottom: 15px;">
+                    <strong style="color: #dc2626;">Karst sebagai carbon sink SAMA SEKALI TIDAK MASUK PERHITUNGAN!</strong> 
+                    Padahal proses karstifikasi menyerap <strong>787 ton C/km²/tahun</strong> — angka yang sangat signifikan.
+                </p>
+
+                <div class="policy-highlight">
+                    <strong>💡 Rekomendasi Kebijakan:</strong>
+                    <ul style="margin-top: 15px; line-height: 2;">
+                        <li>✅ <strong>Masukkan karst dalam Nationally Determined Contributions (NDC)</strong> Indonesia</li>
+                        <li>✅ <strong>Protokol pengukuran karbon karst</strong> standar nasional</li>
+                        <li>✅ <strong>Insentif ekonomi bagi daerah</strong> yang melindungi karst (payment for ecosystem services)</li>
+                        <li>✅ <strong>Penetapan Karst Kendeng/Sukolilo</strong> sebagai Kawasan Lindung Geologi Nasional</li>
+                        <li>✅ <strong>Moratorium tambang karst</strong> di seluruh Indonesia</li>
+                        <li>✅ <strong>Credit carbon trading</strong> untuk karst yang terlindungi</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 20px; padding: 20px; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <strong style="color: #065f46;">🌍 Konteks Global:</strong> 
+                    Indonesia memiliki salah satu kawasan karst terluas di dunia. Jika karst masuk skema karbon, 
+                    potensi <strong>carbon credits</strong> bisa mencapai <strong>miliaran dollar</strong> sekaligus menjamin perlindungan permanen kawasan karst!
+                </p>
+            </div>
+        </div>
+
+        <!-- Solution Box -->
+        <div class="solution-box">
+            <h2>💡 SOLUSI PELESTARIAN KONEKTIVITAS KARBON</h2>
+            <p style="font-size: 18px; opacity: 0.95; margin-bottom: 20px;">
+                Menjaga konektivitas karbon dari ridge hingga reef memerlukan perlindungan menyeluruh seluruh ekosistem
+            </p>
+
+            <ul class="solution-list">
+                <li>
+                    <span class="solution-icon">🛡️</span>
+                    <div class="solution-content">
+                        <strong>Penetapan Karst Kendeng/Sukolilo sebagai Kawasan Lindung Geologi Nasional</strong>
+                        Prioritas tertinggi untuk melindungi carbon sink unik yang tidak bisa digantikan. Moratorium total tambang karst.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">🌳</span>
+                    <div class="solution-content">
+                        <strong>Moratorium Alih Fungsi Hutan Lindung</strong>
+                        Hentikan konversi hutan lindung Ungaran, Telomoyo, Merbabu, dan Muria. Cadangan karbon biomassa harus dijaga.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">🌳</span>
+                    <div class="solution-content">
+                        <strong>Rehabilitasi dan Ekspansi Mangrove</strong>
+                        Restorasi mangrove Demak sebagai blue carbon sink. Target 10.000 ha dalam 10 tahun untuk maksimalkan serapan karbon pesisir.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">🌿</span>
+                    <div class="solution-content">
+                        <strong>Konservasi Lamun Karimunjawa</strong>
+                        Perlindungan padang lamun sebagai carbon sink laut yang 3-5x lebih efektif dari hutan darat.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">💰</span>
+                    <div class="solution-content">
+                        <strong>Masukkan Karst dalam Skema Carbon Trading</strong>
+                        Inisiasi protokol pengukuran karbon karst untuk masuk NDC Indonesia dan akses carbon credits internasional.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">📊</span>
+                    <div class="solution-content">
+                        <strong>Monitoring Carbon Budget Terintegrasi</strong>
+                        Sistem monitoring real-time untuk 5 ekosistem karbon: karst, hutan, mangrove, lamun, sedimen laut.
+                    </div>
+                </li>
+                <li>
+                    <span class="solution-icon">👥</span>
+                    <div class="solution-content">
+                        <strong>Payment for Ecosystem Services (PES)</strong>
+                        Insentif ekonomi bagi masyarakat yang menjaga ekosistem carbon sink. Dana dari carbon credits dialokasikan ke komunitas lokal.
+                    </div>
+                </li>
+            </ul>
+
+            <div style="margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.25); border-radius: 12px; border: 2px solid white;">
+                <p style="font-size: 17px; font-weight: 600; line-height: 1.8;">
+                    🌍 <strong>TARGET:</strong> Jika seluruh ekosistem terjaga, Semarang-Demak mampu <strong>carbon neutral</strong> 
+                    dengan menyerap <strong>500.000+ ton CO₂/tahun</strong> — kontribusi signifikan untuk target Net Zero Emission Indonesia 2060!
+                </p>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="downloadReport()">
+                <span>📥</span> Download Laporan Lengkap
+            </button>
+            <button class="btn btn-secondary" onclick="shareInfographic()">
+                <span>📤</span> Bagikan Infografis
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function downloadReport() {
+            alert('📥 Fitur download PDF akan segera tersedia!\n\nReport akan berisi:\n• Analisis 5 Ekosistem Karbon\n• Detail Proses Karstifikasi\n• Potensi Carbon Budget 500.000+ ton/tahun\n• Implikasi Kebijakan Carbon Trading\n• Rekomendasi untuk NDC Indonesia');
+        }
+
+        function shareInfographic() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Konektivitas Karbon Ridge to Reef',
+                    text: 'Sistem Penyerapan Karbon Terintegrasi: 500.000+ ton CO₂/tahun',
+                    url: window.location.href
+                });
+            } else {
+                alert('📤 Link berhasil disalin!\n\nBagikan infografis ini untuk awareness tentang pentingnya karst sebagai carbon sink yang belum masuk skema karbon nasional!');
+            }
+        }
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.flow-path, .storage-section, .unique-feature, .threat-section, .policy-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Interactive cards
+        document.querySelectorAll('.journey-step').forEach(step => {
+            step.addEventListener('click', function() {
+                const info = {
+                    'KARST': 'Karstifikasi: Proses geologis unik di mana CO₂ atmosfer bereaksi dengan air hujan membentuk asam karbonat, melarutkan batu gamping, dan mengunci karbon sebagai bikarbonat dalam air tanah. Rate: 787 ton C/km²/tahun.',
+                    'HUTAN LINDUNG': 'Hutan Ungaran menyimpan 135 ton C/ha dalam biomassa pohon. Fotosintesis mengubah CO₂ menjadi biomassa. Hutan primer memiliki cadangan karbon tertinggi.',
+                    'MANGROVE': 'Blue carbon: Mangrove Mangunharjo menyerap >5.900 kg CO₂eq dalam 1,2 ha. Karbon tersimpan di biomassa dan sedimen. Efisiensi penyerapan sangat tinggi per area.',
+                    'LAMUN': 'Seagrass Karimunjawa memiliki efektivitas penyerapan karbon 3-5x lebih tinggi dari hutan darat. Carbon sink laut yang underestimated.',
+                    'SEDIMEN LAUT': 'Penyimpanan karbon jangka panjang di dasar laut. Karbon yang terendapkan bisa tersimpan ribuan hingga jutaan tahun.'
+                };
+                
+                const label = this.querySelector('.journey-label').textContent;
+                alert(`ℹ️ ${label}\n\n${info[label] || 'Informasi detail'}`);
+            });
+        });
+    </script>
+</body>
+</html>
