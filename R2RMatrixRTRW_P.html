@@ -460,19 +460,6 @@
             margin-bottom: 10px;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .zone-buttons {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .zone-buttons {
-                grid-template-columns: 1fr;
-            }
-        }
-
         /* Modal Styles */
         .modal {
             display: none;
@@ -752,6 +739,61 @@
         .image-modal-close:hover,
         .image-modal-close:focus {
             color: #bbb;
+        }
+
+        /* Back to Home Navigation */
+        .back-to-home {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .back-to-home-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
+            transition: all 0.3s;
+        }
+
+        .back-to-home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(14, 165, 233, 0.6);
+        }
+
+        .back-to-home-btn .icon {
+            font-size: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .zone-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .zone-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-to-home {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .back-to-home-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -1085,7 +1127,7 @@
         </div>
     </div>
 
-    <!-- Modals (same as before) -->
+    <!-- Modals -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1119,6 +1161,14 @@
     <div id="imageModal" class="image-modal">
         <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
         <img class="image-modal-content" id="imageModalContent">
+    </div>
+
+    <!-- Back to Home Button -->
+    <div class="back-to-home">
+        <a href="index.html" class="back-to-home-btn">
+            <span class="icon">🏠</span>
+            <span>Kembali ke Beranda</span>
+        </a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
