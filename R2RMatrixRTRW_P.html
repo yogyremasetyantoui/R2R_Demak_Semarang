@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matriks Integrasi Pola Ruang RTRW & 17 SDGs</title>
+    <title>Integrasi Pola Ruang RTRW Provinsi dengan 17 SDGs</title>
     <style>
         * {
             margin: 0;
@@ -87,6 +87,16 @@
         .content {
             padding: 30px;
             overflow-x: auto;
+        }
+
+        .matrix-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .matrix-container {
@@ -204,6 +214,263 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
+        }
+
+        /* Featured Image Section */
+        .featured-image-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .featured-image-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .featured-image-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .featured-image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 60px rgba(0,0,0,0.3);
+        }
+
+        .featured-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .featured-image-caption {
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* Modern Zone Buttons */
+        .zone-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .zone-button {
+            position: relative;
+            padding: 25px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: left;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .zone-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .zone-button:hover::before {
+            opacity: 1;
+        }
+
+        .zone-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+
+        .zone-button.active {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+        }
+
+        .zone-button.zone-1 {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+            color: white;
+        }
+
+        .zone-button.zone-2 {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
+            color: #78350f;
+            border: 2px solid #f59e0b;
+        }
+
+        .zone-button.zone-3 {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 50%, #d8b4fe 100%);
+            color: #581c87;
+            border: 2px solid #a855f7;
+        }
+
+        .zone-button.zone-4 {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+            color: white;
+        }
+
+        .zone-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .zone-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .zone-name {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 5px;
+        }
+
+        .zone-subtitle {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .zone-arrow {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .zone-button.active .zone-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Zone Narrative */
+        .zone-narrative {
+            max-width: 1200px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .zone-narrative.active {
+            max-height: 3000px;
+        }
+
+        .narrative-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-left: 5px solid;
+        }
+
+        .narrative-content.zone-1 {
+            border-left-color: #ea580c;
+            background: linear-gradient(to right, #fff7ed 0%, white 100%);
+        }
+
+        .narrative-content.zone-2 {
+            border-left-color: #f59e0b;
+            background: linear-gradient(to right, #fffbeb 0%, white 100%);
+        }
+
+        .narrative-content.zone-3 {
+            border-left-color: #a855f7;
+            background: linear-gradient(to right, #faf5ff 0%, white 100%);
+        }
+
+        .narrative-content.zone-4 {
+            border-left-color: #3b82f6;
+            background: linear-gradient(to right, #eff6ff 0%, white 100%);
+        }
+
+        .narrative-header {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .narrative-section {
+            margin-bottom: 25px;
+        }
+
+        .narrative-section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 12px;
+            padding-left: 15px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .narrative-text {
+            color: #475569;
+            line-height: 1.8;
+            font-size: 15px;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .narrative-list {
+            margin-left: 20px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .narrative-list li {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .zone-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .zone-buttons {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Modal Styles */
@@ -329,7 +596,6 @@
             text-align: justify;
         }
 
-        /* Card Styles for Multiple Rows */
         .pointer-card {
             background: #f9fafb;
             border-left: 4px solid #3b82f6;
@@ -407,7 +673,6 @@
             margin-top: 5px;
         }
 
-        /* SDG Modal Specific Styles */
         .sdg-modal-header {
             background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         }
@@ -437,12 +702,63 @@
             font-size: 12px;
             margin-left: 10px;
         }
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .image-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 95%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .image-modal-close:hover,
+        .image-modal-close:focus {
+            color: #bbb;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Matriks Integrasi Pola Ruang RTRW & 17 SDGs</h1>
+            <h1>Integrasi Pola Ruang RTRW Provinsi dengan 17 SDGs</h1>
             <div class="sdg-icons">
                 <div class="sdg-icon" data-sdg="1"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sustainable_Development_Goal_01NoPoverty.svg/500px-Sustainable_Development_Goal_01NoPoverty.svg.png" alt="SDG 1"></div>
                 <div class="sdg-icon" data-sdg="2"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Sustainable_Development_Goal_02ZeroHunger.svg/500px-Sustainable_Development_Goal_02ZeroHunger.svg.png" alt="SDG 2"></div>
@@ -450,7 +766,7 @@
                 <div class="sdg-icon" data-sdg="4"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sustainable_Development_Goal_04QualityEducation.svg/500px-Sustainable_Development_Goal_04QualityEducation.svg.png" alt="SDG 4"></div>
                 <div class="sdg-icon" data-sdg="5"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sustainable_Development_Goal_05GenderEquality.svg/500px-Sustainable_Development_Goal_05GenderEquality.svg.png" alt="SDG 5"></div>
                 <div class="sdg-icon" data-sdg="6"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Sustainable_Development_Goal_06CleanWaterSanitation.svg/500px-Sustainable_Development_Goal_06CleanWaterSanitation.svg.png" alt="SDG 6"></div>
-                <div class="sdg-icon" data-sdg="7"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_07CleanEnergy.svg/500px-Sustainable_Goal_07CleanEnergy.svg.png" alt="SDG 7"></div>
+                <div class="sdg-icon" data-sdg="7"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_07CleanEnergy.svg/500px-Sustainable_Development_Goal_07CleanEnergy.svg.png" alt="SDG 7"></div>
                 <div class="sdg-icon" data-sdg="8"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Sustainable_Development_Goal_08DecentWork.svg/500px-Sustainable_Development_Goal_08DecentWork.svg.png" alt="SDG 8"></div>
                 <div class="sdg-icon" data-sdg="9"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sustainable_Development_Goal_09Industry.svg/500px-Sustainable_Development_Goal_09Industry.svg.png" alt="SDG 9"></div>
                 <div class="sdg-icon" data-sdg="10"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sustainable_Development_Goal_10ReducedInequalities.svg/500px-Sustainable_Development_Goal_10ReducedInequalities.svg.png" alt="SDG 10"></div>
@@ -465,6 +781,8 @@
         </div>
         
         <div class="content">
+            <div class="matrix-title">Matriks Integrasi Pola Ruang RTRW & 17 SDGs</div>
+            
             <div class="matrix-container">
                 <div class="section-header">KAWASAN LINDUNG</div>
                 <table>
@@ -570,9 +888,204 @@
                 </div>
             </div>
         </div>
+
+        <div class="featured-image-section">
+            <div class="featured-image-title">Zonasi Ridge to Reef</div>
+            <div class="featured-image-container" onclick="openImageModal()">
+                <img src="https://raw.githubusercontent.com/yogyremasetyantoui/R2R_Demak_Semarang/refs/heads/main/images/CatchmentMapYogy.jpg" 
+                     alt="Zonasi Ridge to Reef Semarang-Demak"
+                     id="featuredImage">
+            </div>
+            <div class="featured-image-caption">Klik gambar untuk memperbesar</div>
+
+            <!-- Modern Zone Buttons -->
+            <div class="zone-buttons">
+                <button class="zone-button zone-1" onclick="toggleZone(1)">
+                    <span class="zone-icon">⛰️</span>
+                    <span class="zone-label">ZONE 1</span>
+                    <span class="zone-name">HULU / RIDGE</span>
+                    <span class="zone-subtitle">Upstream</span>
+                    <span class="zone-arrow">▼</span>
+                </button>
+                <button class="zone-button zone-2" onclick="toggleZone(2)">
+                    <span class="zone-icon">🌾</span>
+                    <span class="zone-label">ZONE 2</span>
+                    <span class="zone-name">MID-STREAM</span>
+                    <span class="zone-subtitle">Transition Zone</span>
+                    <span class="zone-arrow">▼</span>
+                </button>
+                <button class="zone-button zone-3" onclick="toggleZone(3)">
+                    <span class="zone-icon">🏖️</span>
+                    <span class="zone-label">ZONE 3</span>
+                    <span class="zone-name">PESISIR / COASTAL</span>
+                    <span class="zone-subtitle">Mid-Downstream</span>
+                    <span class="zone-arrow">▼</span>
+                </button>
+                <button class="zone-button zone-4" onclick="toggleZone(4)">
+                    <span class="zone-icon">🌊</span>
+                    <span class="zone-label">ZONE 4</span>
+                    <span class="zone-name">LAUT / REEF</span>
+                    <span class="zone-subtitle">Marine</span>
+                    <span class="zone-arrow">▼</span>
+                </button>
+            </div>
+
+            <!-- Zone Narratives -->
+            <div id="narrative-1" class="zone-narrative">
+                <div class="narrative-content zone-1">
+                    <div class="narrative-header">
+                        <span>⛰️</span>
+                        <span>ZONE 1: HULU / RIDGE (Upstream)</span>
+                    </div>
+                    <div class="narrative-text">
+                        Elevasi lebih dari 500 mdpl mencakup Bentang Alam Karst (Sukolilo), Hutan Lindung (Ungaran, Penggaron), Cagar Alam (Muria), TN Merbabu, dan Kawasan Resapan Air (Gunungpati).
+                    </div>
+                    
+                    <div class="narrative-section">
+                        <div class="narrative-section-title">Fenomena SDGs</div>
+                        <div class="narrative-text">
+                            <strong>Aspek Air (SDG 6)</strong> berfungsi sebagai aspek utama dengan zona infiltrasi dan recharge seluruh DAS Jratunseluna. Karst Sukolilo memiliki 79 mata air permanen dengan debit lebih dari 1000 liter per detik yang menghidupi 8.000 rumah tangga dan 4.000 hektare sawah. Hutan Ungaran menyuplai 100 persen air baku PDAM Semarang, sementara TN Merbabu menyediakan Mata Air Babon (30 liter per detik) dan Sipendok untuk Selo dan Getasan.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Aspek Karbon (SDG 13)</strong> menunjukkan bahwa Hutan Ungaran menyimpan gudang karbon biomassa lebih dari 135 ton per hektare. Karbon biru karst melalui karstifikasi mencapai 787 ton C per kilometer persegi per tahun yang merupakan fenomena unik. TN Merbabu memiliki hutan primer dengan cadangan karbon tertinggi.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Aspek Biodiversitas (SDG 15)</strong> meliputi spesies flagship seperti Elang Jawa (Ungaran), Owa Jawa (Petungkriyono), dan Macan Tutul (Muria). Kelelawar karst berfungsi sebagai pengendali hama alami sawah dengan jelajah 10 kilometer. Flora endemik tanah kapur dan Merak Hijau juga menjadi fokus pelestarian.
+                        </div>
+                    </div>
+                    
+                    <div class="narrative-section">
+                        <div class="narrative-section-title">Tantangan Kritis</div>
+                        <div class="narrative-text">
+                            <strong>Tantangan pertama</strong> adalah Ancaman Tambang Karst dengan dampak kehilangan fungsi akuifer yang akan mematikan 8.000 rumah tangga dan 4.000 hektare sawah melalui kekeringan permanen. Bukti lapangan menunjukkan mata air Kedungwinong dan Baleadi sudah mati akibat kerusakan karst. Status Kawasan Lindung Geologi Nasional belum ditetapkan hingga saat ini, meningkatkan urgensi intervensi.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Tantangan kedua</strong> adalah Alih Fungsi Hutan Lindung yang mengakibatkan perumahan di Semarang Atas memicu banjir dan longsor di hilir. Bukti menunjukkan longsor Permata Puri Ngaliyan dan banjir Stasiun Tawang serta Poncol meningkat. Mekanisme terjadinya mencakup peningkatan run-off, penurunan infiltrasi, dan matinya mata air seperti Pring Kurung.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Tantangan ketiga</strong> adalah Perambahan dan Degradasi Tutupan Vegetasi yang mengakibatkan penurunan debit mata air dan ancaman terhadap kualitas air baku PDAM. Habitat Elang Jawa dan Owa Jawa menyusut dengan risiko kepunahan lokal.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="narrative-2" class="zone-narrative">
+                <div class="narrative-content zone-2">
+                    <div class="narrative-header">
+                        <span>🌾</span>
+                        <span>ZONE 2: MID-STREAM (Transition Zone)</span>
+                    </div>
+                    <div class="narrative-text">
+                        Elevasi 50-500 meter dpl mencakup Pertanian Lahan Basah (LP2B Demak-Grobogan), Hortikultura (Bandungan, Kopeng), Lahan Kering (Grobogan jagung), Sempadan Sungai (BKB dan BKT), serta Kawasan Industri (KIK dan KIT Batang).
+                    </div>
+                    
+                    <div class="narrative-section">
+                        <div class="narrative-section-title">Fenomena SDGs</div>
+                        <div class="narrative-text">
+                            <strong>Aspek Pangan (SDG 2)</strong> menunjukkan LP2B Demak-Grobogan sebagai surplus beras yang dilindungi hukum dari konversi. Waduk Kedung Ombo menjamin irigasi teknis 2-3 kali tanam per tahun. Grobogan menyumbang sepertiga produksi jagung Jawa Tengah, dan sentra bawang merah berfungsi sebagai pengendali inflasi pangan.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Aspek Ekonomi (SDG 8)</strong> mencerminkan transformasi struktural dari agraris menjadi industrialis. KIK menyerap 60.000 lebih tenaga kerja, KIT Batang mencatat investasi Rp 6,8 triliun pada fase 1, sementara korporasi petani memotong tengkulak dan meningkatkan nilai tukar.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Aspek Drainase (SDG 11)</strong> menunjukkan BKB dan BKT yang dinormalisasi sepanjang 6,7 kilometer dengan kapasitas 518 meter kubik per detik. Sistem Polder Sungai Banger menggunakan teknologi Belanda.
+                        </div>
+                    </div>
+                    
+                    <div class="narrative-section">
+                        <div class="narrative-section-title">Tantangan Kritis</div>
+                        <div class="narrative-text">
+                            <strong>Tantangan pertama</strong> adalah Kompetisi Lahan antara Industri dan LP2B dengan demand lahan industri tinggi dan ancaman konversi sawah produktif. Dampaknya adalah ketahanan pangan regional terancam. Solusi memerlukan enforcement Perda LP2B dan insentif pajak bagi petani.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Tantangan kedua</strong> adalah Polusi Industri dengan ancaman limbah cair pabrik terhadap kualitas air irigasi dan sungai. Mitigasi sudah berjalan dengan IPAL Terpadu KIW dan KIK mengolah 2.500 meter kubik per hari, namun industri di luar kawasan industri belum terstandar.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Tantangan ketiga</strong> adalah Sedimentasi Pelabuhan dan Muara dengan sumber dari erosi lahan pertanian lereng dan urban run-off Ungaran. Dampaknya adalah pendangkalan Pelabuhan Tanjung Emas dengan laju 1.200 milimeter per tahun. Biaya pengerukan rutin menguras APBN tanpa ada solusi jangka panjang.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="narrative-3" class="zone-narrative">
+                <div class="narrative-content zone-3">
+                    <div class="narrative-header">
+                        <span>🏖️</span>
+                        <span>ZONE 3: PESISIR / COASTAL (Mid-Downstream)</span>
+                    </div>
+                    <div class="narrative-text">
+                        Elevasi 0-50 meter dpl mencakup Sempadan Pantai (sabuk hijau), Kawasan Perikanan (tambak silvofishery), Permukiman Pesisir (Tambaklorok, Bedono), dan Cagar Alam Laut (mangrove Demak).
+                    </div>
+                    
+                    <div class="narrative-section">
+                        <div class="narrative-section-title">Fenomena SDGs</div>
+                        <div class="narrative-text">
+                            <strong>Aspek Adaptasi Iklim (SDG 13)</strong> menunjukkan Mangrove Demak sebagai benteng rob dan abrasi dengan metode Building with Nature memulihkan sabuk pantai. Sayung dengan permeable dam dan mangrove menciptakan akresi 50-100 sentimeter sedimen baru. Mangunharjo dengan area 1,2 hektare menyerap lebih dari 5.900 kg CO2eq.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Aspek Ekonomi Biru (SDG 14)</strong> mencakup Silvofishery tambak-mangrove tumpangsari yang meningkatkan survival rate bandeng. Rajungan Betahwalang diekspor 1.420 ton per tahun ke Amerika Serikat. Mangrove berfungsi sebagai nursery ground yang memulihkan stok ikan.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Aspek Permukiman Rentan (SDG 11)</strong> menunjukkan Tambaklorok yang mengalami transformasi melalui program KOTAKU dan tanggul laut dari zona banjir menjadi destinasi wisata. Bedono dan Timbulsloko merupakan contoh kegagalan adaptasi dengan ratusan hektare tenggelam.
+                        </div>
+                    </div>
+                    
+                    <div class="narrative-section">
+                        <div class="narrative-section-title">Tantangan Kritis</div>
+                        <div class="narrative-text">
+                            <strong>Tantangan pertama</strong> adalah Rob dan Abrasi Ekstrem yang disebabkan oleh faktor alami dan antropogenik. Faktor alami mencakup kenaikan muka air laut 1-3 milimeter per tahun karena perubahan iklim global dan defisit sedimen dari sediment starvation Sungai Tuntang. Faktor antropogenik yang signifikan adalah Land Subsidence atau penurunan muka tanah akibat penyedotan air tanah intensif dengan laju 5-10 sentimeter per tahun di pesisir Semarang. Dampak kumulatif menunjukkan bahwa rob yang seharusnya 30 sentimeter menjadi 50 sentimeter karena tanah turun 20 sentimeter.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Tantangan kedua</strong> adalah Intrusi Air Asin dengan lokasi di Sungai Tuntang (Demak) yang terancam saat musim kemarau. Dampaknya adalah sawah gagal panen dan PDAM kesulitan memperoleh air baku. Penyebab utamanya adalah defisit sedimen dari hulu yang terkait dengan fenomena sediment starvation.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Tantangan ketiga</strong> adalah Konflik Ruang antara Tambak, Mangrove, dan Permukiman. Dilema yang muncul adalah petambak membutuhkan lahan sementara mangrove memerlukan ruang tumbuh untuk melindungi pantai. Solusi melalui Silvofishery sebagai win-win masih mengalami adopsi rendah kurang dari 20 persen petambak.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="narrative-4" class="zone-narrative">
+                <div class="narrative-content zone-4">
+                    <div class="narrative-header">
+                        <span>🌊</span>
+                        <span>ZONE 4: LAUT / REEF (Marine)</span>
+                    </div>
+                    <div class="narrative-text">
+                        Elevasi kurang dari 0 meter dpl mencakup TN Karimunjawa, Cagar Alam Laut, dan Perairan Jepara.
+                    </div>
+                    
+                    <div class="narrative-section">
+                        <div class="narrative-section-title">Fenomena SDGs</div>
+                        <div class="narrative-text">
+                            <strong>Aspek Stok Ikan (SDG 14)</strong> menunjukkan zona inti Karimunjawa dengan spill-over effect ikan dari zona lindung menyebar ke zona tangkap, meningkatkan tangkapan nelayan Jepara. Tutupan terumbu karang zona lindung mencapai 41-76 persen yang menunjukkan kesehatan.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Aspek Blue Carbon (SDG 13)</strong> mencakup lamun (seagrass) Karimunjawa yang 3-5 kali lebih efektif menyerap karbon dari hutan darat. Potensi perdagangan karbon biru atau blue carbon credits masih terbuka.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Aspek Ekowisata (SDG 8)</strong> menunjukkan pariwisata bahari Karimunjawa menciptakan ribuan lapangan kerja melalui homestay, pemandu snorkeling, dan restoran. Nelayan beralih profesi saat musim angin barat ketika ikan menghilang.
+                        </div>
+                    </div>
+                    
+                    <div class="narrative-section">
+                        <div class="narrative-section-title">Tantangan Kritis</div>
+                        <div class="narrative-text">
+                            <strong>Tantangan pertama</strong> adalah Sedimentasi dari Darat dengan sumber material dari muara BKB dan BKT sebesar 1.200 milimeter per tahun yang terbawa arus ke perairan Karimunjawa. Dampaknya adalah terumbu karang tertutup sedimen yang menyebabkan coral bleaching dan kematian. Ancaman terhadap terumbu karang Karimunjawa sebagai aset wisata triliunan rupiah adalah rusak permanen dalam 20-30 tahun jika erosi hulu tidak terkendali.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Tantangan kedua</strong> adalah Overfishing dengan tekanan tangkap berlebih di luar zona lindung akibat demand pasar tinggi. Dampaknya adalah ukuran ikan tangkapan mengecil dan stok menurun. Solusi memerlukan zonasi ketat dan patroli BKSDA laut.
+                        </div>
+                        <div class="narrative-text">
+                            <strong>Tantangan ketiga</strong> adalah Polusi Plastik dan Limbah Domestik dengan sumber sampah dari Kota Semarang yang terbawa sungai ke muara dan laut. Dampaknya adalah mikroplastik terakumulasi di rantai makanan laut. Gap yang ada adalah sistem pengelolaan sampah terpadu hulu-hilir belum efektif.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Modal Popup untuk Kawasan -->
+    <!-- Modals (same as before) -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -588,7 +1101,6 @@
         </div>
     </div>
 
-    <!-- Modal Popup untuk SDG -->
     <div id="sdgModal" class="modal">
         <div class="modal-content">
             <div class="modal-header sdg-modal-header">
@@ -604,18 +1116,48 @@
         </div>
     </div>
 
-    <!-- Load PapaParse Library -->
+    <div id="imageModal" class="image-modal">
+        <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+        <img class="image-modal-content" id="imageModalContent">
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     
     <script>
-        // Published CSV URLs
         const KAWASAN_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?gid=230507739&single=true&output=csv';
         const SDG_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQWilCFtsahnc2_Gvl3ygR40-QXZ7HBcQYbVyfPb_J-CJOMYrNGM0_29uoNg9QuflcDCzN4RTUnSP3E/pub?gid=172114157&single=true&output=csv';
         
         let kawasanData = [];
         let sdgData = [];
+        let activeZone = null;
 
-        // Load data from Kawasan Google Sheets
+        // Toggle Zone Narrative
+        function toggleZone(zoneNumber) {
+            const narrative = document.getElementById(`narrative-${zoneNumber}`);
+            const button = document.querySelector(`.zone-button.zone-${zoneNumber}`);
+            
+            // If clicking same zone, close it
+            if (activeZone === zoneNumber) {
+                narrative.classList.remove('active');
+                button.classList.remove('active');
+                activeZone = null;
+            } else {
+                // Close all narratives
+                document.querySelectorAll('.zone-narrative').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.zone-button').forEach(b => b.classList.remove('active'));
+                
+                // Open clicked narrative
+                narrative.classList.add('active');
+                button.classList.add('active');
+                activeZone = zoneNumber;
+                
+                // Smooth scroll to narrative
+                setTimeout(() => {
+                    narrative.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
         function loadKawasanData() {
             Papa.parse(KAWASAN_SHEET_URL, {
                 download: true,
@@ -631,7 +1173,6 @@
             });
         }
 
-        // Load data from SDG Google Sheets
         function loadSDGData() {
             Papa.parse(SDG_SHEET_URL, {
                 download: true,
@@ -648,7 +1189,6 @@
             });
         }
 
-        // Update SDG icons based on data availability
         function updateSDGIcons() {
             const sdgIcons = document.querySelectorAll('.sdg-icon');
             sdgIcons.forEach(icon => {
@@ -668,7 +1208,6 @@
             });
         }
 
-        // Get modal elements
         const kawasanModal = document.getElementById('infoModal');
         const kawasanModalBody = document.getElementById('modalBody');
         const modalKawasan = document.getElementById('modalKawasan');
@@ -679,7 +1218,9 @@
         const sdgModalTitle = document.getElementById('sdgModalTitle');
         const sdgModalSubtitle = document.getElementById('sdgModalSubtitle');
 
-        // Close modals
+        const imageModal = document.getElementById('imageModal');
+        const imageModalContent = document.getElementById('imageModalContent');
+
         function closeKawasanModal() {
             kawasanModal.style.display = 'none';
         }
@@ -688,7 +1229,16 @@
             sdgModal.style.display = 'none';
         }
 
-        // Close modal when clicking outside
+        function openImageModal() {
+            const img = document.getElementById('featuredImage');
+            imageModal.style.display = 'block';
+            imageModalContent.src = img.src;
+        }
+
+        function closeImageModal() {
+            imageModal.style.display = 'none';
+        }
+
         window.onclick = function(event) {
             if (event.target == kawasanModal) {
                 closeKawasanModal();
@@ -696,9 +1246,11 @@
             if (event.target == sdgModal) {
                 closeSDGModal();
             }
+            if (event.target == imageModal) {
+                closeImageModal();
+            }
         }
 
-        // Show Kawasan modal with data
         function showKawasanModal(kawasan, sdg) {
             kawasanModal.style.display = 'block';
             modalKawasan.textContent = kawasan;
@@ -753,7 +1305,6 @@
             }
         }
 
-        // Show SDG modal with MULTIPLE ROWS support & AUTO DEDUPLICATE
         function showSDGModal(sdgNumber) {
             const filteredData = sdgData.filter(row => {
                 const rowSDG = (row.SDG || '').toString().trim();
@@ -761,7 +1312,7 @@
             });
 
             if (filteredData.length === 0) {
-                return; // Don't show modal if no data
+                return;
             }
 
             sdgModal.style.display = 'block';
@@ -774,7 +1325,6 @@
 
             let html = '';
             
-            // Penjelasan Umum (dari baris pertama yang memiliki data)
             const penjelasanRow = filteredData.find(row => row['Penjelasan Umum'] && row['Penjelasan Umum'].trim() !== '');
             if (penjelasanRow) {
                 html += `
@@ -785,12 +1335,10 @@
                 `;
             }
 
-            // Dukungan Primer - Display each row as separate card (with AUTO DEDUPLICATION)
             const primerRows = filteredData.filter(row => 
                 row['Dukungan Langsung (Primer)'] && row['Dukungan Langsung (Primer)'].trim() !== ''
             );
             
-            // ✅ AUTO DEDUPLICATE - Remove duplicates based on content
             const uniquePrimerRows = [];
             const seenPrimerContent = new Set();
             primerRows.forEach(row => {
@@ -804,7 +1352,6 @@
             if (uniquePrimerRows.length > 0) {
                 html += `<div class="info-section"><div class="info-label">Dukungan Langsung (Primer)</div>`;
                 
-                // Update pointer count badge with unique count
                 if (uniquePrimerRows.length > 1) {
                     sdgModalSubtitle.innerHTML = `${firstRow['Nama SDG'] || ''} <span class="pointer-count-badge">${uniquePrimerRows.length} Pointer</span>`;
                 }
@@ -823,14 +1370,12 @@
                 html += `</div>`;
             }
 
-            // Dukungan Sekunder - Display each row as separate card (with AUTO DEDUPLICATION)
             const sekunderRows = filteredData.filter(row => 
                 row['Dukungan Tidak Langsung (Sekunder)'] && 
                 row['Dukungan Tidak Langsung (Sekunder)'].trim() !== '' && 
                 row['Dukungan Tidak Langsung (Sekunder)'].toLowerCase() !== 'tidak ada'
             );
             
-            // ✅ AUTO DEDUPLICATE - Remove duplicates based on content
             const uniqueSekunderRows = [];
             const seenSekunderContent = new Set();
             sekunderRows.forEach(row => {
@@ -857,7 +1402,6 @@
                 html += `</div>`;
             }
 
-            // Temuan Kritis (dari baris pertama yang memiliki data)
             const temuanRow = filteredData.find(row => row['Temuan Kritis'] && row['Temuan Kritis'].trim() !== '');
             if (temuanRow) {
                 html += `
@@ -871,7 +1415,6 @@
             sdgModalBody.innerHTML = html;
         }
 
-        // Initialize circle listeners
         function initializeCircleListeners() {
             const circles = document.querySelectorAll('.circle');
             circles.forEach(circle => {
@@ -883,7 +1426,6 @@
             });
         }
 
-        // Initialize SDG icon listeners
         function initializeSDGIconListeners() {
             const sdgIcons = document.querySelectorAll('.sdg-icon');
             sdgIcons.forEach(icon => {
@@ -896,7 +1438,6 @@
             });
         }
 
-        // Initialize when page loads
         window.addEventListener('DOMContentLoaded', function() {
             loadKawasanData();
             loadSDGData();
