@@ -83,6 +83,57 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
+
+        /* Featured Image Section */
+        .featured-image-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .featured-image-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .featured-image-subtitle {
+            font-size: 16px;
+            color: #475569;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .featured-image-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .featured-image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 60px rgba(0,0,0,0.3);
+        }
+
+        .featured-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .featured-image-caption {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+        }
         
         .content {
             padding: 30px;
@@ -230,7 +281,7 @@
             padding: 0;
             border-radius: 20px;
             width: 90%;
-            max-width: 900px;
+            max-width: 1000px;
             max-height: 85vh;
             overflow-y: auto;
             box-shadow: 0 25px 80px rgba(0,0,0,0.4);
@@ -256,6 +307,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         .modal-header h2 {
@@ -296,7 +350,7 @@
         }
 
         .info-section {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .info-label {
@@ -305,7 +359,18 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-label::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+            border-radius: 2px;
         }
 
         .info-content {
@@ -315,14 +380,47 @@
             text-align: justify;
         }
 
-        .info-content ul {
-            margin-left: 20px;
-            margin-top: 10px;
+        /* Card Styles for Multiple Rows */
+        .pointer-card {
+            background: #f9fafb;
+            border-left: 4px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .info-content ul li {
-            margin-bottom: 8px;
-            line-height: 1.6;
+        .pointer-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .pointer-card.secondary-card {
+            background: #fef3c7;
+            border-left-color: #f59e0b;
+        }
+
+        .pointer-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .pointer-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .pointer-card.secondary-card .pointer-number {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
 
         .loading {
@@ -375,6 +473,73 @@
             font-size: 14px;
             opacity: 0.9;
         }
+
+        .section-divider {
+            border: none;
+            border-top: 2px solid #e5e7eb;
+            margin: 30px 0;
+        }
+
+        .pointer-count-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.3);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        /* Image Modal for Featured Image */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .image-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 95%;
+            max-height: 95%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .image-modal-close:hover,
+        .image-modal-close:focus {
+            color: #bbb;
+        }
     </style>
 </head>
 <body>
@@ -400,6 +565,18 @@
                 <div class="sdg-icon" data-sdg="16"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg/500px-Sustainable_Development_Goal_16PeaceJusticeInstitutions.svg.png" alt="SDG 16"></div>
                 <div class="sdg-icon" data-sdg="17"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sustainable_Development_Goal_17Partnerships.svg/500px-Sustainable_Development_Goal_17Partnerships.svg.png" alt="SDG 17"></div>
             </div>
+        </div>
+
+        <!-- Featured Image Section (NEW) -->
+        <div class="featured-image-section">
+            <div class="featured-image-title">Peta Catchment Area Ridge to Reef</div>
+            <div class="featured-image-subtitle">Wilayah Semarang - Demak</div>
+            <div class="featured-image-container" onclick="openImageModal()">
+                <img src="https://raw.githubusercontent.com/yogyremasetyantoui/R2R_Demak_Semarang/refs/heads/main/images/CatchmentMapYogy.jpg" 
+                     alt="Peta Catchment Area Ridge to Reef Semarang-Demak"
+                     id="featuredImage">
+            </div>
+            <div class="featured-image-caption">Klik gambar untuk memperbesar</div>
         </div>
         
         <div class="content">
@@ -542,6 +719,12 @@
         </div>
     </div>
 
+    <!-- Image Modal for Featured Image (NEW) -->
+    <div id="imageModal" class="image-modal">
+        <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+        <img class="image-modal-content" id="imageModalContent">
+    </div>
+
     <!-- Load PapaParse Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     
@@ -617,6 +800,9 @@
         const sdgModalTitle = document.getElementById('sdgModalTitle');
         const sdgModalSubtitle = document.getElementById('sdgModalSubtitle');
 
+        const imageModal = document.getElementById('imageModal');
+        const imageModalContent = document.getElementById('imageModalContent');
+
         // Close modals
         function closeKawasanModal() {
             kawasanModal.style.display = 'none';
@@ -626,6 +812,17 @@
             sdgModal.style.display = 'none';
         }
 
+        // Image modal functions (NEW)
+        function openImageModal() {
+            const img = document.getElementById('featuredImage');
+            imageModal.style.display = 'block';
+            imageModalContent.src = img.src;
+        }
+
+        function closeImageModal() {
+            imageModal.style.display = 'none';
+        }
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == kawasanModal) {
@@ -633,6 +830,9 @@
             }
             if (event.target == sdgModal) {
                 closeSDGModal();
+            }
+            if (event.target == imageModal) {
+                closeImageModal();
             }
         }
 
@@ -682,7 +882,7 @@
                         </div>
                         ` : ''}
                         
-                        ${index < filteredData.length - 1 ? '<hr style="margin: 25px 0; border: none; border-top: 2px solid #e5e7eb;">' : ''}
+                        ${index < filteredData.length - 1 ? '<hr class="section-divider">' : ''}
                     `;
                 });
                 kawasanModalBody.innerHTML = html;
@@ -691,7 +891,7 @@
             }
         }
 
-        // Show SDG modal with data
+        // Show SDG modal with MULTIPLE ROWS support & AUTO DEDUPLICATE
         function showSDGModal(sdgNumber) {
             const filteredData = sdgData.filter(row => {
                 const rowSDG = (row.SDG || '').toString().trim();
@@ -699,61 +899,102 @@
             });
 
             if (filteredData.length === 0) {
-                return; // Don't show modal if no data
+                return;
             }
 
             sdgModal.style.display = 'block';
             sdgModalBody.innerHTML = '<div class="loading">Memuat data</div>';
 
-            const data = filteredData[0];
+            const firstRow = filteredData[0];
             
-            sdgModalTitle.textContent = `SDG ${data.SDG}`;
-            sdgModalSubtitle.textContent = data['Nama SDG'] || '';
+            sdgModalTitle.textContent = `SDG ${firstRow.SDG}`;
+            sdgModalSubtitle.textContent = `${firstRow['Nama SDG'] || ''} `;
 
             let html = '';
             
-            if (data['Penjelasan Umum'] && data['Penjelasan Umum'].trim() !== '') {
+            const penjelasanRow = filteredData.find(row => row['Penjelasan Umum'] && row['Penjelasan Umum'].trim() !== '');
+            if (penjelasanRow) {
                 html += `
                 <div class="info-section">
                     <div class="info-label">Penjelasan Umum</div>
-                    <div class="info-content">${data['Penjelasan Umum']}</div>
+                    <div class="info-content">${penjelasanRow['Penjelasan Umum']}</div>
                 </div>
                 `;
             }
 
-            if (data['Dukungan Langsung (Primer)'] && data['Dukungan Langsung (Primer)'].trim() !== '') {
-                const primerItems = data['Dukungan Langsung (Primer)'].split('•').filter(item => item.trim() !== '');
-                html += `
-                <div class="info-section">
-                    <div class="info-label">Dukungan Langsung (Primer)</div>
-                    <div class="info-content">
-                        <ul>
-                            ${primerItems.map(item => `<li>${item.trim()}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                `;
+            const primerRows = filteredData.filter(row => 
+                row['Dukungan Langsung (Primer)'] && row['Dukungan Langsung (Primer)'].trim() !== ''
+            );
+            
+            const uniquePrimerRows = [];
+            const seenPrimerContent = new Set();
+            primerRows.forEach(row => {
+                const content = row['Dukungan Langsung (Primer)'].trim();
+                if (!seenPrimerContent.has(content)) {
+                    seenPrimerContent.add(content);
+                    uniquePrimerRows.push(row);
+                }
+            });
+            
+            if (uniquePrimerRows.length > 0) {
+                html += `<div class="info-section"><div class="info-label">Dukungan Langsung (Primer)</div>`;
+                
+                if (uniquePrimerRows.length > 1) {
+                    sdgModalSubtitle.innerHTML = `${firstRow['Nama SDG'] || ''} <span class="pointer-count-badge">${uniquePrimerRows.length} Pointer</span>`;
+                }
+                
+                uniquePrimerRows.forEach((data, index) => {
+                    html += `
+                        <div class="pointer-card">
+                            <span class="pointer-number">Pointer ${index + 1}</span>
+                            ${data.ImageURL && data.ImageURL.trim() !== '' ? 
+                                `<img src="${data.ImageURL.trim()}" alt="Primer ${index+1}" onerror="this.style.display='none'">` 
+                                : ''}
+                            <div class="info-content">${data['Dukungan Langsung (Primer)']}</div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
             }
 
-            if (data['Dukungan Tidak Langsung (Sekunder)'] && data['Dukungan Tidak Langsung (Sekunder)'].trim() !== '' && data['Dukungan Tidak Langsung (Sekunder)'].toLowerCase() !== 'tidak ada') {
-                const sekunderItems = data['Dukungan Tidak Langsung (Sekunder)'].split('•').filter(item => item.trim() !== '');
-                html += `
-                <div class="info-section">
-                    <div class="info-label">Dukungan Tidak Langsung (Sekunder)</div>
-                    <div class="info-content">
-                        <ul>
-                            ${sekunderItems.map(item => `<li>${item.trim()}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                `;
+            const sekunderRows = filteredData.filter(row => 
+                row['Dukungan Tidak Langsung (Sekunder)'] && 
+                row['Dukungan Tidak Langsung (Sekunder)'].trim() !== '' && 
+                row['Dukungan Tidak Langsung (Sekunder)'].toLowerCase() !== 'tidak ada'
+            );
+            
+            const uniqueSekunderRows = [];
+            const seenSekunderContent = new Set();
+            sekunderRows.forEach(row => {
+                const content = row['Dukungan Tidak Langsung (Sekunder)'].trim();
+                if (!seenSekunderContent.has(content)) {
+                    seenSekunderContent.add(content);
+                    uniqueSekunderRows.push(row);
+                }
+            });
+            
+            if (uniqueSekunderRows.length > 0) {
+                html += `<div class="info-section"><div class="info-label">Dukungan Tidak Langsung (Sekunder)</div>`;
+                uniqueSekunderRows.forEach((data, index) => {
+                    html += `
+                        <div class="pointer-card secondary-card">
+                            <span class="pointer-number">Sekunder ${index + 1}</span>
+                            ${data.ImageURL && data.ImageURL.trim() !== '' ? 
+                                `<img src="${data.ImageURL.trim()}" alt="Sekunder ${index+1}" onerror="this.style.display='none'">` 
+                                : ''}
+                            <div class="info-content">${data['Dukungan Tidak Langsung (Sekunder)']}</div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
             }
 
-            if (data['Temuan Kritis'] && data['Temuan Kritis'].trim() !== '') {
+            const temuanRow = filteredData.find(row => row['Temuan Kritis'] && row['Temuan Kritis'].trim() !== '');
+            if (temuanRow) {
                 html += `
                 <div class="info-section">
                     <div class="info-label">Temuan Kritis</div>
-                    <div class="info-content">${data['Temuan Kritis']}</div>
+                    <div class="info-content">${temuanRow['Temuan Kritis']}</div>
                 </div>
                 `;
             }
@@ -761,7 +1002,6 @@
             sdgModalBody.innerHTML = html;
         }
 
-        // Initialize circle listeners
         function initializeCircleListeners() {
             const circles = document.querySelectorAll('.circle');
             circles.forEach(circle => {
@@ -773,7 +1013,6 @@
             });
         }
 
-        // Initialize SDG icon listeners
         function initializeSDGIconListeners() {
             const sdgIcons = document.querySelectorAll('.sdg-icon');
             sdgIcons.forEach(icon => {
@@ -786,7 +1025,6 @@
             });
         }
 
-        // Initialize when page loads
         window.addEventListener('DOMContentLoaded', function() {
             loadKawasanData();
             loadSDGData();
